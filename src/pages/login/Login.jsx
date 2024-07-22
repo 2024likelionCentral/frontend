@@ -1,6 +1,8 @@
 import React from 'react';
 import startlogo from '../../assets/img/icon/logo.svg'
 
+// 처음 메인 화면 (try or 이미 계정을 소유함)
+
 const Login = () => {
 
   const tryButtonClick = () => {

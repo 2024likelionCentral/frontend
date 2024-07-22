@@ -1,5 +1,8 @@
 import React from 'react'
 import googlelogo from '../../assets/img/login/googlelogo.svg'
+import Footer from '../../components/enter/Footer'
+
+// 로그인 정보 입력 창
 
 const Enter = () => {
 
@@ -12,6 +15,7 @@ const Enter = () => {
     }
 
   return (
+    <>
     <div className='enter_wrap'>
         <div>
             <h1>로그인</h1>
@@ -38,7 +42,7 @@ const Enter = () => {
             <button className='googlebtn' onClick={googleButtonClick}><img src={googlelogo} alt="google" className='googlelogo'/> 구글 계정으로 로그인</button> {/* 구글 로그인 버튼*/}
 
             <div className='option'>
-                <h3>회원가입</h3>
+                <h3 className='signup'>회원가입</h3>
                 <div className='find'>
                     <h3 className='find_id'>계정 찾기</h3>
                     <h3>|</h3>
@@ -46,8 +50,9 @@ const Enter = () => {
                 </div>
             </div>
       </div>
-
     </div>
+    <Footer/>
+    </>
   )
 }
 
