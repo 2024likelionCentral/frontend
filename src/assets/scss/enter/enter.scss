@@ -1,0 +1,124 @@
+.enter_wrap {
+    background-color: #fcfcfc;
+    height: 1024px;
+    width: 1440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pretendard';
+
+    >div {
+        width: 1440px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            font-size: 28px;
+            font-weight: normal;
+        }
+
+        .enterfield {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+
+            .id {
+                width: 546px;
+                height: 72px;
+                border-radius: 12px;
+                font-size: 20px;
+                border: 1px solid #ECBFC2;
+                padding-left: 19px;
+                font-weight: normal;
+            }
+
+            .pw {
+                width: 546px;
+                height: 72px;
+                border-radius: 12px;
+                font-size: 20px;
+                border: 1px solid #ECBFC2;
+                padding-left: 19px;
+                font-weight: normal;
+            }
+
+            .save {
+                display: flex;
+                align-items: center;
+
+                .checkbox {
+                    width: 24px;
+                    height: 24px;
+                    border: 1px solid #ECBFC2;
+                    background-color: #FFFFFF;
+                    border-radius: 4px;
+                }
+
+                .idsave {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #9F9F9F;
+                }
+            }
+        }
+
+        .loginbtn {
+            width: 546px;
+            height: 72px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #F2B4C1;
+        }
+
+        .line {
+            display: flex;
+            width: 546px;
+            justify-content: space-between;
+
+            .hr {
+                width: 260.5px;
+                border: 1px solid #EEEEEE;
+            }
+
+            .or {
+                font-size: 14px;
+                font-weight: 600;
+                color: #9F9F9F;
+            }
+        }
+
+        .googlebtn {
+            width: 546px;
+            height: 72px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFFEFF;
+            border: 1px solid #EEEEEE;
+
+            .googlelogo{
+                width: 46px;
+                height: 46px;
+                margin-right: 24px;
+            }
+        }
+
+        .option {
+            width: 546px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+
+    }
+
+}

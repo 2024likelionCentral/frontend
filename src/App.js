@@ -1,10 +1,12 @@
 import React from 'react'
-import Goal01 from './pages/goal/Goal01'
+import Login from './pages/login/Login'
+import Enter from './pages/enter/Enter'
 
 function App() {
   return (
     <div className="App">
-      <Goal01 />
+      <Login/>
+      <Enter/>
     </div>
   );
 }
