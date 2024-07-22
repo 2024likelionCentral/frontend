@@ -19,7 +19,7 @@ const Signin01 = () => {
   }
 
   return (
-    <div className="flex justify-center items-center py-5 px-3">
+    <div className="image_pulse">
         <Carousel
           showArrows={false}
           autoPlay={true}
@@ -27,6 +27,8 @@ const Signin01 = () => {
           showThumbs={false}
           selectedItem={imageData[currentIndex]}
           onChange={handleChange}
+          statusFormatter={() => ""}
+          interval={5000}
           className="w-[400px] lg:hidden">
           {renderSlides}
         </Carousel>
