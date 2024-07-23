@@ -21,7 +21,7 @@
     font-family: 'Pretendard';
   }
   
-  .goal01 {
+  .goal02 {
     position: relative;
     display: flex;
     justify-content: center;
@@ -30,7 +30,7 @@
     overflow: hidden;
   }
   
-  .goal01::before {
+  .goal02::before {
     content: '';
     position: absolute;
     top: 0;
@@ -42,7 +42,7 @@
     z-index: 1;
   }
   
-  .content {
+  .goal02-content {
     position: relative;
     z-index: 2;
     width: 800px;
@@ -68,8 +68,23 @@
     margin-top: 36px;
     margin-bottom: 20px;
   }
+  .goal-text {
+    font-size: 20px;
+    color: #444444;
+    border-bottom:  2px solid #F2B4C1;
+    margin: 20px;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .goal-subtext{
+    color: #444444;
+    font-size: 28px;
+    font-weight: 600;
+  }
 
-  .input-container {
+  .input-container02 {
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,8 +121,20 @@
     margin-bottom: 20px;
     font-weight: 600;
     margin-top: 28px;
+    color: #444444;
   }
   
+  .back-btn{
+    margin-top: 338px;
+    margin-right: 20px;
+    background: #FFFFFF;
+    color: #F2B4C1;
+    border: 1px solid #F2B4C1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 100px;
+    cursor: pointer;
+  }
   .next-btn {
     margin-top: 338px;
     background: #EEEEEE;
