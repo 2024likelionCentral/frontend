@@ -39,7 +39,7 @@ function Goal01({ setGoalText }) {
           </div>
           <div className="goal">이다.</div>
           <button
-            className={`next-btn ${inputValue.trim() ? 'active' : ''}`}
+            className={`next-btn1 ${inputValue.trim() ? 'active' : ''}`}
             disabled={!inputValue.trim()}
             onClick={handleNextClick}
           >

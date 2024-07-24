@@ -15,13 +15,14 @@
     src: url('../../font/Pretendard-SemiBold.woff') format('woff');
     font-weight: normal;
   }
+  
   body, html, #root {
     height: 100%;
     margin: 0;
     font-family: 'Pretendard';
   }
   
-  .goal01 {
+  .goal03 {
     position: relative;
     display: flex;
     justify-content: center;
@@ -30,7 +31,7 @@
     overflow: hidden;
   }
   
-  .goal01::before {
+  .goal03::before {
     content: '';
     position: absolute;
     top: 0;
@@ -38,78 +39,97 @@
     width: 100%;
     height: 100%;
     background: url('../../img/goal/goal_background.png') center/cover no-repeat;
-    filter: blur(20px); /* Adjust the blur level as needed */
+    filter: blur(20px);
     z-index: 1;
   }
   
-  .content {
+  .goal03-content {
     position: relative;
     z-index: 2;
     width: 800px;
-    height: 1030px;
-    background: white ;
+    max-height: 100%;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
     padding: 20px;
     text-align: center;
+    overflow-y: auto;
   }
-  
   
   .date {
     font-size: 28px;
     font-weight: normal;
-    margin-top: 124px;
+    margin-top: 130px;
     margin-bottom: 10px;
   }
   
-  .title {
+  .goal-subtext {
+    color: #444444;
     font-size: 28px;
     font-weight: 600;
-    margin-top: 36px;
-    margin-bottom: 20px;
+    margin-top: 30px;
   }
-
-  .input-container {
+  
+  .goals {
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+  }
+  
+  .goal-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    margin: 20px;
+    margin-top: 30px;
+    border-bottom: 1px solid #F2B4C1 ;
+  }
+  
+  .priority {
+    background: #444444;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom:  2px solid #F2B4C1;
+    margin-right: 10px;
   }
   
-  .input {
-    width: calc(100% - 40px);
-    padding: 10px;
-    margin-bottom: 8px;
-    margin-top: 80px;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #9F9F9F;
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .input:focus {
-    outline: none; 
-    box-shadow: none; 
-    color: #444444;
-  }
-  .char-count {
-    font-size: 16px;
-    color: #9F9F9F;
-    margin-right: 10px;
-    margin-top: 65px;
-    font-weight: 600;
+  .drag-handle {
+    cursor: grab;
   }
   
   .goal {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-top: 40px;
     font-weight: 600;
-    margin-top: 28px;
+    color: #444444;
   }
   
-  .next-btn1 {
-    margin-top: 400px;
+  .button-container {
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .back-btn {
+    background: #FFFFFF;
+    color: #F2B4C1;
+    border: 1px solid #F2B4C1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 100px;
+    cursor: pointer;
+  }
+  
+  .next-btn {
     background: #EEEEEE;
     color: #9F9F9F;
     border: none;
@@ -117,14 +137,15 @@
     border-radius: 20px;
     width: 100px;
     cursor: pointer;
-    
   }
-  .next-btn1.active {
-    background: #F2B4C1; 
-    color: #fff; 
+  
+  .next-btn.active {
+    background: #F2B4C1;
+    color: #fff;
     cursor: pointer;
   }
-  .next-btn1:disabled {
+  
+  .next-btn:disabled {
     cursor: not-allowed;
   }
   
