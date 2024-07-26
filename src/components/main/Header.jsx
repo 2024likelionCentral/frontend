@@ -28,7 +28,10 @@ function Header() {
             <div className="logo">
                 <img src={logo} alt="Logo" />
             </div>
-            <div className="mypage">mypage</div> 
+            <div className='right'>
+                <div className="mypage">Mypage</div> 
+                <div className="Logout">Logout</div>
+            </div>
         </header>
         </>
     );

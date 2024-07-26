@@ -17,15 +17,28 @@
     padding: 10px 80px;
   }
 
-  .mypage {
-    font-size: 24px;
-    cursor: pointer;
+  .right {
+    display: flex;
     padding: 10px 80px;
+
+    .mypage {
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 60px;
+    }
+  
+    .Logout {
+      font-size: 24px;
+      cursor: pointer;
+
+    }
   }
   
   .logo img {
+    width: 61.8px;
     height: 40px; 
     cursor: pointer;
+    margin-left: 60px;
   }
   
   @media (max-width: 600px) {

@@ -4,6 +4,8 @@ import Main from './pages/main/Main';
 import Login from './pages/login/Login';
 import Enter from './pages/enter/Enter';
 import Signin from './pages/signin/Signin';
+import Mypage from './pages/mypage/Mypage';
+import Modify from './pages/modify/Modify';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/enter" element={<Enter />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/main" element={<Main />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/modify" element={<Modify />} />
         </Routes>
       </div>
     </Router>

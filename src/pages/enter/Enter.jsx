@@ -18,7 +18,7 @@ const Enter = () => {
     <>
     <div className='enter_wrap'>
         <div>
-            <h1>로그인</h1>
+            <h1 className='h1'>로그인</h1>
             
             <div className='enterfield'>
                 <input type='text' className='id' name='id' placeholder='아이디' />

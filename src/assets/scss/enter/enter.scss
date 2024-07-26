@@ -16,8 +16,8 @@
 
         .h1 {
             font-size: 28px;
-            font-weight: 600;
             margin-top: 169px;
+            font-weight: normal;
         }
 
         .enterfield {
@@ -32,7 +32,7 @@
                 font-size: 20px;
                 border: 1px solid #ECBFC2;
                 padding-left: 19px;
-                font-weight: 600;
+                font-weight: normal;
                 margin-top: 36px;
             }
 
@@ -43,7 +43,7 @@
                 font-size: 20px;
                 border: 1px solid #ECBFC2;
                 padding-left: 19px;
-                font-weight: 600;
+                font-weight: normal;
                 margin-top: 24px;
             }
 
@@ -107,7 +107,7 @@
             height: 72px;
             border-radius: 12px;
             font-size: 20px;
-            font-weight: 600;
+            font-weight: normal;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -131,7 +131,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
             font-size: 20px;
             color: #444444;
             margin-top: 36px;
@@ -142,13 +141,19 @@
                 align-items: center;
             }
 
+            .signup {
+                font-weight: 600;
+            }
+
             .signup:hover{
                 cursor: pointer;
+                
             }
             
 
             .find_id {
                 margin-right: 24px;
+                font-weight: 600;
             }
 
             .find_id:hover{
@@ -157,6 +162,7 @@
 
             .find_pw {
                 margin-left: 24px;
+                font-weight: 600;
             }
 
             .find_pw:hover{
