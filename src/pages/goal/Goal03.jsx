@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goal03.scss';
-import dragicon from '../../assets/img/goal/priority.png'
+import dragicon from '../../assets/img/goal/priority.png';
 
 const Goal03 = () => {
   const location = useLocation();
@@ -25,8 +25,11 @@ const Goal03 = () => {
   };
 
   const handleNextClick = () => {
-    // 다음 단계로 이동
-    navigate('/nextStep', { state: { sortedTexts: items } });
+    console.log("Navigating to Goal04 with state:", {
+      goalText: location.state.goalText,
+      sortedTexts: items,
+    }); // 디버깅을 위해 로그 추가
+    navigate('/goal04', { state: { goalText: location.state.goalText, sortedTexts: items } });
   };
 
   return (
@@ -71,7 +74,7 @@ const Goal03 = () => {
             <button className="back-btn" onClick={handleBackClick}>
               Back
             </button>
-            <button className="next-btn" onClick={handleNextClick}>
+            <button className="next-btn active" onClick={handleNextClick}>
               Next
             </button>
           </div>

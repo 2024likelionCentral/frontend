@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../../font/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+  }
+  
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('../../font/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+  }
+  
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('../../font/Pretendard-SemiBold.woff') format('woff');
+    font-weight: normal;
+  }
+  
+  body, html, #root {
+    width: 100%;
+    margin: 0;
+    font-family: 'Pretendard';
+  }
+  
+  .goal-main {
+    padding: 20px;
+    background: #fff;
+
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      header h1 {
+        font-size: 28px;
+        font-weight: normal;
+        margin-top: 76px;
+      }
+      
+      .content {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #FCFCFC;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      .goal-date {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      
+      .goal-date .date {
+        font-size: 20px;
+        color: #ff6b6b;
+      }
+      
+      .goal-date .goal-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+      }
+      
+      .check-here {
+        text-align: left;
+      }
+      
+      .check-here h2 {
+        font-size: 28px;
+        color: #444444;
+      }
+      
+      .check-here p {
+        font-size: 20px;
+        color: #333;
+        margin-left: 200px;
+      }
+      
+      .goal-list {
+        margin-bottom: 20px;
+      }
+      
+      .goal-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: #fff;
+        border: 2px solid #f2b4c1;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .goal-item .priority {
+        background: #f2b4c1;
+        color: #fff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+      }
+      
+      .button-container {
+        text-align: center;
+      }
+      
+      .new-btn {
+        background: #ff6b6b;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+  }
+  
+  
+  

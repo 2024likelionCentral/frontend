@@ -16,7 +16,8 @@
     font-weight: normal;
   }
   body, html, #root {
-    height: 100%;
+    width: 100%;
+    height: 1024px;
     margin: 0;
     font-family: 'Pretendard';
   }
@@ -25,9 +26,95 @@
     position: relative;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    // height: 100vh;
     align-items: center;
     overflow: hidden;
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 800px;
+      height: 1024px;
+      background: white ;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
+      padding: 20px;
+      text-align: center;
+      color:#444444;
+    }
+    
+    
+    .date {
+      font-size: 28px;
+      font-weight: normal;
+      margin-top: 188px;
+      margin-bottom: 10px;
+    }
+    
+    .title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 20px;
+    }
+  
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom:  2px solid #F2B4C1;
+    }
+    
+    .input {
+      width: calc(100% - 40px);
+      padding: 10px;
+      margin-bottom: 8px;
+      margin-top: 80px;
+      border: none;
+      border-radius: 5px;
+      box-sizing: border-box;
+      color: #9F9F9F;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .input:focus {
+      outline: none; 
+      box-shadow: none; 
+      color: #444444;
+    }
+    .char-count {
+      font-size: 16px;
+      color: #9F9F9F;
+      margin-right: 10px;
+      margin-top: 65px;
+      font-weight: 600;
+    }
+    
+    .goal {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      margin-top: 28px;
+    }
+    
+    .next-btn1 {
+      margin-top: 200px;
+      background: #EEEEEE;
+      color: #9F9F9F;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      width: 100px;
+      cursor: pointer;
+      
+    }
+    .next-btn1.active {
+      background: #F2B4C1; 
+      color: #fff; 
+      cursor: pointer;
+    }
+    .next-btn1:disabled {
+      cursor: not-allowed;
+    }
   }
   
   .goal01::before {
@@ -40,91 +127,10 @@
     background: url('../../img/goal/goal_background.png') center/cover no-repeat;
     filter: blur(20px); /* Adjust the blur level as needed */
     z-index: 1;
-  }
-  
-  .content {
-    position: relative;
-    z-index: 2;
-    width: 800px;
-    height: 1030px;
-    background: white ;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
-    padding: 20px;
-    text-align: center;
-  }
-  
-  
-  .date {
-    font-size: 28px;
-    font-weight: normal;
-    margin-top: 124px;
-    margin-bottom: 10px;
-  }
-  
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-top: 36px;
-    margin-bottom: 20px;
-  }
-
-  .input-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom:  2px solid #F2B4C1;
-  }
-  
-  .input {
-    width: calc(100% - 40px);
-    padding: 10px;
-    margin-bottom: 8px;
-    margin-top: 80px;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #9F9F9F;
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .input:focus {
-    outline: none; 
-    box-shadow: none; 
-    color: #444444;
-  }
-  .char-count {
-    font-size: 16px;
-    color: #9F9F9F;
-    margin-right: 10px;
-    margin-top: 65px;
-    font-weight: 600;
-  }
-  
-  .goal {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    margin-top: 28px;
-  }
-  
-  .next-btn1 {
-    margin-top: 400px;
-    background: #EEEEEE;
-    color: #9F9F9F;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    width: 100px;
-    cursor: pointer;
     
   }
-  .next-btn1.active {
-    background: #F2B4C1; 
-    color: #fff; 
-    cursor: pointer;
-  }
-  .next-btn1:disabled {
-    cursor: not-allowed;
-  }
+
+  
+  
+  
   
