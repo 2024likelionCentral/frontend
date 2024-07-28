@@ -28,9 +28,10 @@ const Goal03 = () => {
     console.log("Navigating to Goal04 with state:", {
       goalText: location.state.goalText,
       sortedTexts: items,
-    }); // 디버깅을 위해 로그 추가
+    });
     navigate('/goal04', { state: { goalText: location.state.goalText, sortedTexts: items } });
   };
+  
 
   return (
     <div className="goal03">

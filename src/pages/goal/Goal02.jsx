@@ -22,7 +22,7 @@ const Goal02 = ({ goalText }) => {
   };
 
   const handleNextClick = () => {
-    navigate('/goal03', { state: { goalTexts: inputs } });
+    navigate('/goal03', { state: { goalTexts: inputs, goalText } });
   };
 
   const handleAddInput = () => {
