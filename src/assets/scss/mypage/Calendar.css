@@ -7,14 +7,7 @@
     border-radius: 10px; 
 }
 
-/* 네비게이션 버튼 */
-.react-calendar__navigation button {
-    color: #444444;
-    min-width: 44px;
-    background: none;
-    font-size: 28px;
-    margin-top: 8px;
-}
+
 
 /* 현재 날짜 */
 .react-calendar__tile--now {
@@ -70,4 +63,22 @@
     font-weight: 600;
     line-height: 1;
     color: #444444;
+
 }
+
+/* 네비게이션 버튼 (왼쪽, 오른쪽 화살표)은 클릭할 수 있도록 설정 */
+.react-calendar__navigation button {
+    pointer-events: auto; /* 클릭 이벤트를 허용 */
+    color: #444444;
+    min-width: 44px;
+    background: none;
+    font-size: 28px;
+    margin-top: 8px;
+}
+
+/* 년도와 월 부분의 클릭을 비활성화 */
+.react-calendar__navigation__label {
+    pointer-events: none !important; /* 클릭 이벤트를 차단 */
+    cursor: default; /* 기본 커서로 변경 */
+}
+
