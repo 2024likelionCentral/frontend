@@ -1,35 +1,37 @@
 @font-face {
-    font-family: 'Pretendard';
-    src: url('../../font/Pretendard-Bold.woff') format('woff');
-    font-weight: bold;
-  }
-  
-  @font-face {
-    font-family: 'Pretendard';
-    src: url('../../font/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
-  }
-  
-  @font-face {
-    font-family: 'Pretendard';
-    src: url('../../font/Pretendard-SemiBold.woff') format('woff');
-    font-weight: normal;
-  }
-  body, html, #root {
-    height: 100%;
-    margin: 0;
-    font-family: 'Pretendard';
-  }
-  
-  .goal01 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    height: 1024px;
-    align-items: center;
-    overflow: hidden;
-  }
-  
+  font-family: 'Pretendard';
+  src: url('../../font/Pretendard-Bold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../../font/Pretendard-Regular.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../../font/Pretendard-SemiBold.woff') format('woff');
+  font-weight: normal;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Pretendard';
+}
+
+.goal01 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 1024px;
+  align-items: center;
+  overflow: hidden;
+
   .goal01::before {
     content: '';
     position: absolute;
@@ -38,30 +40,31 @@
     width: 100%;
     height: 100%;
     background: url('../../img/goal/goal_background.png') center/cover no-repeat;
-    filter: blur(20px); /* Adjust the blur level as needed */
+    filter: blur(20px);
+    /* Adjust the blur level as needed */
     z-index: 1;
   }
-  
+
   .content {
     position: relative;
     z-index: 2;
     width: 800px;
     height: 1030px;
-    background: white ;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
     padding: 20px;
     text-align: center;
   }
-  
-  
+
+
   .date {
     font-size: 28px;
     font-weight: normal;
     margin-top: 124px;
     margin-bottom: 10px;
   }
-  
+
   .title {
     font-size: 28px;
     font-weight: 600;
@@ -73,9 +76,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom:  2px solid #F2B4C1;
+    border-bottom: 2px solid #F2B4C1;
   }
-  
+
   .input {
     width: calc(100% - 40px);
     padding: 10px;
@@ -88,24 +91,29 @@
     font-weight: 600;
     font-size: 20px;
   }
+
   .input:focus {
-    outline: none; /* Ensure no outline on focus */
-    box-shadow: none; /* Ensure no box-shadow on focus */
+    outline: none;
+    /* Ensure no outline on focus */
+    box-shadow: none;
+    /* Ensure no box-shadow on focus */
   }
+
   .char-count {
     font-size: 0.9rem;
     color: #999;
     margin-right: 10px;
-    margin-top: 65px;/* Add margin to the left of the count */
+    margin-top: 65px;
+    /* Add margin to the left of the count */
   }
-  
+
   .goal {
     font-size: 28px;
     margin-bottom: 20px;
     font-weight: 600;
     margin-top: 28px;
   }
-  
+
   .next-btn {
     margin-top: 338px;
     background: #EEEEEE;
@@ -115,14 +123,16 @@
     border-radius: 20px;
     width: 100px;
     cursor: pointer;
-    
+
   }
+
   .next-btn.active {
-    background: #F2B4C1; 
-    color: #fff; 
+    background: #F2B4C1;
+    color: #fff;
     cursor: pointer;
   }
+
   .next-btn:disabled {
     cursor: not-allowed;
   }
-  
+}
