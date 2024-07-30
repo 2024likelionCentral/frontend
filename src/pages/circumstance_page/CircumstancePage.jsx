@@ -12,6 +12,8 @@ import Header from '../../components/main/Header';
 
 const CircumstancePage = () => {
   return (
+    <>
+    <Header/>
     <div className='circumstance_cognition_wrap'>
       <h1 className='main'>Circumstance Cognition</h1>
       <div className='hr'/>
@@ -56,6 +58,7 @@ const CircumstancePage = () => {
       <p className='p'>오늘의 상황은 아직 비어있어요.<br/>지금 바로 작성해 볼까요?</p>
       <button className='button'>NEW<img src={pen} className='pen'/></button>
     </div>
+    </>
   );
 }
 

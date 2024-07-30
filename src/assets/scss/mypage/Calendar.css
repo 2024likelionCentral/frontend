@@ -2,9 +2,12 @@
 .react-calendar {
     border: none;
     font-family: 'Pretendard'; 
-    width: 489px;
+    width: 489px !important;
+    height: 410px !important;
     background-color: transparent; 
     border-radius: 10px; 
+    margin-bottom: 90px;
+    margin-top: -10px;
 }
 
 
@@ -34,7 +37,7 @@
 .react-calendar__month-view__weekdays__weekday {
     color: #444444;
     font-weight: normal;
-    font-size: 25px;
+    font-size: 23px;
     text-decoration: none !important; /* !important 사용 */
 }
 
@@ -52,13 +55,13 @@
 
 /* 사용자 정의 타일 스타일 */
 .custom-tile {
-    height: 55px;
+    height: 50px;
     max-width: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     font-weight: 600;
     line-height: 1;
@@ -72,7 +75,7 @@
     color: #444444;
     min-width: 44px;
     background: none;
-    font-size: 28px;
+    font-size: 25px;
     margin-top: 8px;
 }
 

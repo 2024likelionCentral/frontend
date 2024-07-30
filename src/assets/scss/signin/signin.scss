@@ -1,14 +1,14 @@
 .sign_wrap {
     display: flex;
     background-color: #fcfcfc;
-    height: 1024px;
-    width: 1440px;
+    height: auto;
+    width: 100%;
     justify-content: center;
     align-items: center;
     font-family: 'Pretendard';
 
     .image_pulse {
-        width: 708px;
+        width: 50%;
         height: 100%;
     } //signin01
 
@@ -19,7 +19,7 @@
         align-items: center;
         background-color: #fcfcfc;
         height: 100%;
-        width: 735px;
+        width: 50%;
         font-family: 'Pretendard';
         flex-direction: column;
 

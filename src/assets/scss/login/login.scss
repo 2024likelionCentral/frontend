@@ -1,11 +1,12 @@
 .login_wrap {
     background-color: #fcfcfc;
-    height: 1024px;
-    width: 1440px;
+    height: auto;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Pretendard';
+    padding: 50px;
 
     >div {
         width: 1440px;
