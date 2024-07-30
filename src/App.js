@@ -15,7 +15,6 @@ import Signin from './pages/signin/Signin';
 import Mypage from './pages/mypage/Mypage';
 import Modify from './pages/modify/Modify';
 import CircumstancePage from './pages/circumstance_page/CircumstancePage';
-import Goal01 from './pages/goal/Goal01'
 import Action1 from './pages/action/Action.jsx';
 import Action2 from './pages/action/Action_2.jsx';
 import Action3 from './pages/action/Action_3.jsx';

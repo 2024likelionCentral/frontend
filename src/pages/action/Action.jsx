@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/scss/style.scss'
+import '../../assets/scss/action/action01.scss'
 
 const Action = ({ inputValue, setInputValue }) => {
     const maxLength = 200;
