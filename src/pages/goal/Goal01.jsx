@@ -1,26 +1,33 @@
-import React from 'react'
-import { useState } from 'react';
-import '../../assets/scss/goal/goal01.scss'
-import '../../assets/scss/setting/resets.scss'
-import Header from '../../components/goal/Header';
+import React, { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
+import '../../assets/scss/goal/goal01.scss';
+import '../../assets/scss/setting/resets.scss';
 
-function Goal01() {
-    const [inputValue, setInputValue] = useState('');
-    const maxLength = 20;
-  
-    const handleInputChange = (event) => {
-        if (event.target.value.length <= maxLength) {
-          setInputValue(event.target.value);
-        }
-      };
-  
-    return (
-      <div className="goal01">
-        <div className="content">
-          <main>
-            <div className="date">2024 . 08 . 06</div>
-            <div className="title">이루고자 하는 목표는</div>
-            <div className="input-container">
+function Goal01({ setGoalText }) {
+  const [inputValue, setInputValue] = useState('');
+  const maxLength = 20;
+  const navigate = useNavigate();
+
+  const handleInputChange = (event) => {
+    if (event.target.value.length <= maxLength) {
+      setInputValue(event.target.value);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (inputValue.trim()) {
+      setGoalText(inputValue);
+      navigate('/goal02');
+    }
+  };
+
+  return (
+    <div className="goal01">
+      <div className="content">
+        <main>
+          <div className="date">2024 . 08 . 06</div>
+          <div className="title">이루고자 하는 목표는</div>
+          <div className="input-container">
             <input
               className="input"
               type="text"
@@ -30,18 +37,18 @@ function Goal01() {
             />
             <div className="char-count">{`${inputValue.length}/${maxLength}`}</div>
           </div>
-            <div className="goal">이다.</div>
-            <button 
-            className={`next-btn ${inputValue.trim() ? 'active' : ''}`}
+          <div className="goal">이다.</div>
+          <button
+            className={`next-btn1 ${inputValue.trim() ? 'active' : ''}`}
             disabled={!inputValue.trim()}
-            >
-                Next
-            </button>
-          </main>
-        </div>
+            onClick={handleNextClick}
+          >
+            Next
+          </button>
+        </main>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}
 
-export default Goal01
+export default Goal01;
