@@ -4,9 +4,35 @@ import Togle02 from '../../assets/img/main/2.svg'
 import pen from '../../assets/img/main/new.svg'
 import line from '../../assets/img/main/line.svg'
 import detail from '../../assets/img/main/more.svg'
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Main02 = () => {
+
+    const navigate = useNavigate();
+
+    const circumstanceButtonClick = () => {
+        navigate('/circumstancePage');
+    }
+
+    const goalButtonClick = () => {
+        navigate('/goalMain');
+    }
+
+    const mypageButtonClick = () => {
+        navigate('/mypage');
+      }
+
+      const newGoalButtonClick = () => {
+        navigate('/goal01');
+    }
+
+    const newCircumstancegoalButtonClick = () => {
+        navigate('/action1');
+      }
+    
+
   return (
     <div className='main02_wrap'>
         <div className='welcome'>
@@ -37,10 +63,10 @@ const Main02 = () => {
             </div>
 
             <div className='go_to_goal'>
-                <button className='goalbtn'>목표를 위한 실천 방법 보러가기</button>
-                <div className='write'>
+                <button className='goalbtn' onClick={goalButtonClick}>목표를 위한 실천 방법 보러가기</button>
+                <div className='write' onClick={newGoalButtonClick}>
                     <img src={pen} className='pen'/>
-                    <div className='new'>신규 목표 작성하기</div>
+                    <div className='new' >신규 목표 작성하기</div>
                 </div>
             </div>
         </div>
@@ -48,7 +74,7 @@ const Main02 = () => {
         <div className='circumstance'>
             <div className='content03'>
                 <h1 className='h1'>PREVIOUS CIRCUMSTANCE</h1>
-                <div className='content04'>
+                <div className='content04' onClick={circumstanceButtonClick}>
                     <h3 className='more'>더보기</h3>
                     <img src={detail} className='detail'/>
                 </div>
@@ -69,7 +95,7 @@ const Main02 = () => {
                 </div>
             </div>
 
-            <div className='circumstance_box'>
+            <div className='circumstance_box' onClick={newCircumstancegoalButtonClick}>
                 <div className='text'>
                     <h1 className='h1'>CIRCUMSTANCE</h1>
                     <p className='p'>상황에 대한 인지 능력을 키워보세요!</p>
@@ -77,7 +103,7 @@ const Main02 = () => {
                 <img src={line} className='line'/>
             </div>
 
-            <div className='circumstance_box'>
+            <div className='circumstance_box' onClick={newGoalButtonClick}>
                 <div className='text'>
                     <h1 className='h1'>GOAL</h1>
                     <p className='p'>목표를 설정하고 도달하기 위해 노력하며 메타인지를 향상시켜보세요!</p>
