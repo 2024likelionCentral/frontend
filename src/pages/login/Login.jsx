@@ -1,16 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import startlogo from '../../assets/img/icon/logo.svg'
 
 // 처음 메인 화면 (try or 이미 계정을 소유함)
 
 const Login = () => {
+  const navigate = useNavigate();
 
   const tryButtonClick = () => {
-    console.log('버튼 클릭됨!');
+    navigate('/signin');
   }
 
   const alreadyButtonClick = () => {
-    console.log('버튼 클릭됨!');
+    navigate('/enter');
   }
 
   return (

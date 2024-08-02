@@ -1,7 +1,16 @@
 import React from 'react' 
 import def from '../../assets/img/mypage/profile.svg'
+import { useNavigate } from 'react-router-dom';
 
 const Mypage01 = () => {
+
+  const navigate = useNavigate();
+
+    const modifyButtonClick = () => {
+        navigate('/modify');
+    }
+
+
   return (
     <div className='profile'>
       <img src={def} alt="프로필" className='img'/>
@@ -27,7 +36,7 @@ const Mypage01 = () => {
         </div>
       </div>
 
-      <button className='modify'>개인정보 수정하기</button>
+      <button className='modify' onClick={modifyButtonClick}>개인정보 수정하기</button>
     </div>
   )
 }
