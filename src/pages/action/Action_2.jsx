@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/scss/action/action02.scss'
+import '../../assets/scss/action/action02.scss';
+import Header from '../../components/goal/Header';
 
 const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     const maxItems = 3; // 최대 항목 개수
@@ -40,6 +41,8 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     };
 
     return (
+        <>
+        <Header/>
         <div className="action02">
             <div className="action_back">
                 <main>
@@ -91,6 +94,7 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
                 </main>
             </div>
         </div>
+        </>
     )
 }
 

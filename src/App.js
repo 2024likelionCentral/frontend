@@ -20,6 +20,7 @@ import Action2 from './pages/action/Action_2.jsx';
 import Action3 from './pages/action/Action_3.jsx';
 import Action4 from './pages/action/Action_4.jsx';
 import Action5 from './pages/action/Action_5.jsx';
+import Action6 from './pages/action/Action_6.jsx';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/action5"
           element={<Action5 inputValue={inputValue} action2Values={action2Values} action3Values={action3Values} action4Values={action4Values} />}
         />
+        <Route path="/action6" element={<Action6 />} />
         <Route path="/" element={<Login />} />
         <Route path="/enter" element={<Enter />} />
         <Route path="/signin" element={<Signin />} />

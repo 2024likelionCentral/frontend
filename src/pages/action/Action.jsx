@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/scss/action/action01.scss'
+import Header from '../../components/goal/Header';
 
 const Action = ({ inputValue, setInputValue }) => {
     const maxLength = 200;
@@ -17,6 +18,8 @@ const Action = ({ inputValue, setInputValue }) => {
     };
 
     return (
+        <>
+        <Header/>
         <div className="action01">
             <div className="action_back">
                 <main>
@@ -46,6 +49,7 @@ const Action = ({ inputValue, setInputValue }) => {
                 </main>
             </div>
         </div>
+        </>
     )
 }
 

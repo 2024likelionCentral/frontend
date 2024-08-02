@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../assets/scss/action/action04.scss'
+import '../../assets/scss/action/action04.scss';
+import Header from '../../components/goal/Header';
+
 
 const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }) => {
     const location = useLocation();
@@ -34,6 +36,8 @@ const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }
     };
 
     return (
+        <>
+        <Header/>
         <div className="action04">
             <div className="action_back">
                 <main>
@@ -93,6 +97,7 @@ const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }
                 </main>
             </div>
         </div>
+        </>
     )
 }
 
