@@ -1,11 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
-import '../../assets/scss/action/action06.scss'
-import check from '../../assets/img/action/action_check.svg'
+import '../../assets/scss/action/action06.scss';
+import { useNavigate } from 'react-router-dom';
+import check from '../../assets/img/action/action_check.svg';
+import Header from '../../components/goal/Header';
+
 
 const Action_6 = () => {
     const [inputValue, setInputValue] = useState('');
     const maxLength = 300;
+    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         if (event.target.value.length <= maxLength) {
@@ -13,7 +17,13 @@ const Action_6 = () => {
         }
     };
 
+    const handleNextClick = () => {
+        navigate('/circumstancePage');
+    };
+
     return (
+        <>
+        <Header/>
         <div className="action04">
             <div className="action_back">
                 <main>
@@ -50,6 +60,7 @@ const Action_6 = () => {
                         </button>
                         <button
                             className="btn"
+                            onClick={handleNextClick}
                         >
                             삭제하기
                         </button>
@@ -58,6 +69,7 @@ const Action_6 = () => {
                 </main>
             </div>
         </div>
+        </>
     )
 }
 

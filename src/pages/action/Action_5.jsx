@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import '../../assets/scss/action/action05.scss'
-import check from '../../assets/img/action/action_check.svg'
+import { useNavigate, useLocation } from 'react-router-dom';
+import '../../assets/scss/action/action05.scss';
+import check from '../../assets/img/action/action_check.svg';
+import Header from '../../components/goal/Header';
+
 
 const Action_5 = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { items, action1Value, action3Values, action4Values } = location.state || {
         items: [],
         action1Value: '',
@@ -16,7 +19,13 @@ const Action_5 = () => {
         console.log("Received inputValue from Action:", items, action1Value, action3Values,action4Values);
     }, [items, action1Value, action3Values,action4Values]);
 
+    const handleNextClick = () => {
+        navigate('/circumstancePage');
+    };
+
     return (
+        <>
+        <Header/>
         <div className="action04">
             <div className="action_back">
                 <main>
@@ -51,7 +60,8 @@ const Action_5 = () => {
                     <p className="title">와 같은 결론을 내린다.</p>
 
 
-                    <button className='save_btn'>
+                    <button className='save_btn'
+                    onClick={handleNextClick}>
                         <p>SAVE</p>
                         <img src={check} alt="" />
                     </button>
@@ -59,6 +69,7 @@ const Action_5 = () => {
                 </main>
             </div>
         </div>
+        </>
     )
 }
 
