@@ -9,18 +9,20 @@
     left: 0;
     width: 100%;
     z-index: 1000; /* 다른 콘텐츠 위에 표시되도록 z-index 설정 */
+
+    .menu-icon, .close-icon {
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px 80px;
+    }
+    
+    .logo1 img {
+      height: 40px; 
+      cursor: pointer;
+    }
   }
   
-  .menu-icon, .close-icon {
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px 80px;
-  }
   
-  .logo img {
-    height: 40px; 
-    cursor: pointer;
-  }
 
   
   @media (max-width: 600px) {

@@ -9,6 +9,13 @@
     left: 0;
     width: 100%;
     z-index: 999; /* 다른 콘텐츠 위에 표시되도록 z-index 설정 */
+
+    .logo img {
+    width: 61.8px;
+    height: 40px; 
+    cursor: pointer;
+    margin-left: 150px;
+    }
   }
   
   .menu-icon{
@@ -35,12 +42,7 @@
     }
   }
   
-  .logo img {
-    width: 61.8px;
-    height: 40px; 
-    cursor: pointer;
-    margin-left: 60px;
-  }
+  
   
   @media (max-width: 600px) {
     .header {

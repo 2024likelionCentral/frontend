@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goaledit.scss';
+import Header from '../../components/goal/Header';
 
 const GoalEdit = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const GoalEdit = () => {
 
   return (
     <div className="goal-edit">
+      <Header />
       <div className="content">
         <main>
           <h1 className="conclusion">Conclusion</h1>

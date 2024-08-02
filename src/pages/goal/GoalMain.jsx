@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import GoalItem from '../../components/GoalItem';
 import '../../assets/scss/goal/goalMain.scss';
+import Header from '../../components/main/Header'
 import newimg from '../../assets/img/goal/edit.png';
 
 const GoalMain = () => {
@@ -34,6 +35,7 @@ const GoalMain = () => {
 
   return (
     <div className="goal-main">
+      <Header/>
       <p>Goal cognition</p>
       <div className="goal-header">
         <h1>2024. 07. 31 GOAL</h1>
@@ -99,7 +101,7 @@ const GoalMain = () => {
         </div>
       </div>
       <div className="button-container">
-        <button className="new-btn" onClick={() => navigate('/')}>New <img src={newimg} alt="new" /></button>
+        <button className="new-btn" onClick={() => navigate('/goal01')}>New <img src={newimg} alt="new" /></button>
       </div>
     </div>
   );

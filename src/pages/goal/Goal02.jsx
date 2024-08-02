@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goal02.scss';
+import Header from '../../components/goal/Header';
 
 const Goal02 = ({ goalText }) => {
   const [inputs, setInputs] = useState(['']);
@@ -18,7 +19,7 @@ const Goal02 = ({ goalText }) => {
   };
 
   const handleBackClick = () => {
-    navigate('/');
+    navigate('/goal01');
   };
 
   const handleNextClick = () => {
@@ -38,6 +39,7 @@ const Goal02 = ({ goalText }) => {
 
   return (
     <div className="goal02">
+      <Header />
       <div className="content">
         <main>
           <div className="date">2024 . 08 . 06</div>
