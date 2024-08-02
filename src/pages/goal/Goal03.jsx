@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goal03.scss';
+import Header from '../../components/goal/Header';
 import dragicon from '../../assets/img/goal/priority.png';
 
 const Goal03 = () => {
@@ -25,16 +26,12 @@ const Goal03 = () => {
   };
 
   const handleNextClick = () => {
-    console.log("Navigating to Goal04 with state:", {
-      goalText: location.state.goalText,
-      sortedTexts: items,
-    });
     navigate('/goal04', { state: { goalText: location.state.goalText, sortedTexts: items } });
   };
-  
 
   return (
     <div className="goal03">
+      <Header />
       <div className="content">
         <main>
           <div className="date">2024 . 08 . 06</div>
@@ -48,7 +45,7 @@ const Goal03 = () => {
                   ref={provided.innerRef}
                 >
                   {items.map((item, index) => (
-                    <Draggable key={`item-${index}`} draggableId={`item-${index}`} index={index}>
+                    <Draggable key={item} draggableId={`item-${index}`} index={index}>
                       {(provided) => (
                         <div
                           className="goal-item"

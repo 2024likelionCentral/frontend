@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import '../../assets/scss/goal/goal01.scss';
 import '../../assets/scss/setting/resets.scss';
+import Header from '../../components/goal/Header';
+
 
 function Goal01({ setGoalText }) {
   const [inputValue, setInputValue] = useState('');
@@ -23,6 +25,7 @@ function Goal01({ setGoalText }) {
 
   return (
     <div className="goal01">
+      <Header />
       <div className="content">
         <main>
           <div className="date">2024 . 08 . 06</div>
