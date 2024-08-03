@@ -1,4 +1,4 @@
-import apiClient from '../api/apiClient';
+import apiClient from '../api/apiClient 2';
 
 // 회원가입 함수
 export const signup = async (userData) => {
