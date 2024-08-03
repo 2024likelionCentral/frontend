@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../assets/scss/action/action05.scss';
 import check from '../../assets/img/action/action_check.svg';
-import Header from '../../components/goal/Header';
+import Header from '../../components/action/Header';
 
 
 const Action_5 = () => {
