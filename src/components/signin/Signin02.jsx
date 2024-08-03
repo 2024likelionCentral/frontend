@@ -41,6 +41,11 @@ const Signin02 =()=> {
       alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
       return;
     }
+  };
+
+  const googleButtonClick = () => {
+    console.log('구글 버튼 클릭됨!');
+  };
 
     try {
       const response = await axios.post('http://15.165.73.36:1234/auth/signup', {
@@ -60,7 +65,6 @@ const Signin02 =()=> {
     <div className='signin02_wrap'>
       <div className='enterfield'>
         <h1 className='signup'>회원가입</h1>
-
         <form onSubmit={handleSubmit}>
           <input
             type='text'
@@ -103,7 +107,6 @@ const Signin02 =()=> {
               <p className='infosave'>이용약관 및 개인정보 처리방침에 동의합니다.</p>
             </label>
           </div>
-
           <button type='submit' className='signbtn' onClick={signButtonClick}>회원가입</button>
         </form>
       </div>
@@ -124,7 +127,7 @@ const Signin02 =()=> {
         <p className='turn_login' onClick={loginButtonClick}>로그인</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Signin02;

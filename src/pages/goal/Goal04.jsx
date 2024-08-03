@@ -4,15 +4,24 @@ import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goal04.scss';
 import checkimg from '../../assets/img/goal/check.png';
 import Header from '../../components/goal/Header';
-
+import axios from 'axios';
 
 const Goal04 = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { goalText, sortedTexts } = location.state || { goalText: '', sortedTexts: [] };
 
-  const handleSaveClick = () => {
-    navigate('/goalMain', { state: { goalText, sortedTexts } });
+  const handleSaveClick = async () => {
+    try {
+      await axios.post('http://15.165.73.36:1234/goals', {
+        goal: goalText,
+        actions: sortedTexts,
+      });
+      alert('작성 성공!');
+      navigate('/goalMain', { state: { goalText, sortedTexts } });
+    } catch (error) {
+      alert('실패');
+    }
   };
 
   return (
