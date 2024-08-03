@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import googlelogo from '../../assets/img/login/googlelogo.svg';
 import { signup } from "../../api/AuthAPI";
 import './CheckboxStyles.css';
 
-export default function Signin02() {
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-    role: "",
-  });
+const Signin02 =()=> {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const navigate = useNavigate();
   const signButtonClick = () => {
@@ -24,19 +24,6 @@ export default function Signin02() {
     navigate('/enter');
   }
 
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [agreeToTerms, setAgreeToTerms] = useState(false);
-
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.id]: e.target.value,
-    });
-  }
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  }
 
   const handleCheckboxChange = (e) => {
     setAgreeToTerms(e.target.checked);
@@ -50,28 +37,24 @@ export default function Signin02() {
       return;
     }
 
-    if (values.password !== confirmPassword) {
+    if (password !== password2) {
       alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
       return;
     }
 
     try {
-      await signup(values);
-      navigate('/enter');
-      
+      const response = await axios.post('http://15.165.73.36:1234/auth/signup', {
+        username: username,
+        role: 'ROLE_USER',
+        password: password,
+      });
+      alert('회원가입 성공!');
+      console.log('회원가입 성공:', response.data);
     } catch (error) {
-      console.log("Signup Error:", error);
-      if (error.response) {
-          console.log("Error Response:", error.response.data);
-          console.log("Error Status:", error.response.status);
-          console.log("Error Headers:", error.response.headers);
-      } else if (error.request) {
-          console.log("Error Request:", error.request);
-      } else {
-          console.log("Error Message:", error.message);
-      }
+      alert('회원가입 실패: 서버 오류가 발생했습니다.');
+      console.error('회원가입 오류:', error);
     }
-  }
+  };
 
   return (
     <div className='signin02_wrap'>
@@ -82,19 +65,19 @@ export default function Signin02() {
           <input
             type='text'
             className='email'
-            id='username'
-            onChange={handleChange}
-            value={values.username}
+            name='username'
             placeholder='아이디'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
 
           <input
             type='password'
             className='pw'
-            id='password'
-            onChange={handleChange}
-            value={values.password}
+            name='pw'
             placeholder='비밀번호'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <p className='or'>영문, 숫자 조합의 8자 이상 20자 이하로 입력해주세요.</p>
@@ -102,12 +85,12 @@ export default function Signin02() {
           <input
             type='password'
             className='pw'
-            id='confirmPassword'
-            onChange={handleConfirmPasswordChange}
-            value={confirmPassword}
+            name='pw2'
             placeholder='비밀번호 확인'
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}  
           />
-
+해
           <div className='checkbox-container'>
             <label className='checkbox-label'>
               <input
@@ -143,3 +126,5 @@ export default function Signin02() {
     </div>
   )
 }
+
+export default Signin02;
