@@ -22,7 +22,6 @@ import Action4 from './pages/action/Action_4.jsx';
 import Action5 from './pages/action/Action_5.jsx';
 import Action6 from './pages/action/Action_6.jsx';
 
-
 function App() {
   const [goalText, setGoalText] = useState('');
   const [sortedTexts, setSortedTexts] = useState([]);

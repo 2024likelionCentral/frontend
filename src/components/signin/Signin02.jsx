@@ -55,7 +55,7 @@ const Signin02 = () => {
           type='text'
           className='email'
           name='email'
-          placeholder='이메일'
+          placeholder='아이디'
           value={form.email}
           onChange={handleChange}
         />
