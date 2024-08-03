@@ -10,3 +10,14 @@ export const signup = async (userData) => {
     throw error;
   }
 };
+
+// 로그인 함수
+export const login = async (credentials) => {
+    try {
+      const response = await apiClient.post('/auth/login', credentials);
+      return response.data;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error;
+    }
+  };

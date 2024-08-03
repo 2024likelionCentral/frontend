@@ -47,9 +47,9 @@ function App() {
           element={<Action5 inputValue={inputValue} action2Values={action2Values} action3Values={action3Values} action4Values={action4Values} />}
         />
         <Route path="/action6" element={<Action6 />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/enter" element={<Enter />} />
-        <Route path="/" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/main" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/modify" element={<Modify />} />
