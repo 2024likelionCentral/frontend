@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/scss/action/action01.scss'
-import Header from '../../components/goal/Header';
+import Header from '../../components/action/Header';
 
 const Action = ({ inputValue, setInputValue }) => {
     const maxLength = 200;

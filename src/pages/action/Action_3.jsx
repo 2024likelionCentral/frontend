@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect  } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import '../../assets/scss/action/action03.scss';
-import Header from '../../components/goal/Header';
+import Header from '../../components/action/Header';
 
 
 const Action_3 = ({ inputValue, action2Values, setAction3Values }) => {
