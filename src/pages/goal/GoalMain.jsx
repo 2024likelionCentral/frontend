@@ -1,22 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import GoalItem from '../../components/GoalItem';
 import '../../assets/scss/goal/goalMain.scss';
-import Header from '../../components/main/Header'
+import Header from '../../components/main/Header';
 import newimg from '../../assets/img/goal/edit.png';
+import { getGoals } from '../../services/apiService';
+
+// 유틸리티 함수
+const getFormattedDate = (dateString) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year} . ${month} . ${day}`;
+};
 
 const GoalMain = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { goalText, sortedTexts } = location.state || { goalText: '', sortedTexts: [] };
+  const { goalText, sortedTexts, createdTime } = location.state || { goalText: '', sortedTexts: [], createdTime: '' };
 
-  const [goals, setGoals] = useState([
-    { date: "2024. 07. 11", title: "팀프로젝트 마무리" },
-    { date: "2024. 07. 05", title: "여기부턴 유슬" },
-    { date: "2024. 06. 21", title: "40 받기기" },
-    { date: "2024. 06. 19", title: "기말고사 끝내기" }
-  ]);
+  const [goals, setGoals] = useState([]);
   const [activeButton, setActiveButton] = useState('등록순'); // 활성화된 버튼 상태를 관리
+
+  useEffect(() => {
+    const fetchGoals = async () => {
+      try {
+        const goals = await getGoals();
+        console.log('Fetched goals:', goals); // 데이터 로그 출력
+        setGoals(goals);
+      } catch (error) {
+        console.error('Failed to fetch goals:', error);
+      }
+    };
+
+    fetchGoals();
+  }, []);
+
+  useEffect(() => {
+    if (goalText && sortedTexts.length > 0) {
+      const date = createdTime ? getFormattedDate(new Date(createdTime).toISOString()) : getFormattedDate(new Date().toISOString());
+      const newGoal = { id: goals.length + 1, date, title: goalText, actions: sortedTexts, priority: true };
+      setGoals(prevGoals => [...prevGoals, newGoal]);
+    }
+  }, [goalText, sortedTexts, createdTime]);
 
   const handleSortOrderChange = (order) => {
     setActiveButton(order); // 활성화된 버튼 상태 업데이트
@@ -30,16 +57,15 @@ const GoalMain = () => {
   };
 
   const handleGoalItemClick = (goal) => {
-    navigate('/goalEdit', { state: { goalText: goal.title, sortedTexts } });
+    navigate(`/goalEdit/${goal.id}`, { state: { goalText: goal.title, sortedTexts: goal.actions, createdTime: goal.createdTime } });
   };
 
   return (
     <div className="goal-main">
-      <Header/>
+      <Header />
       <p>Goal cognition</p>
       <div className="goal-header">
-        <h1>2024. 07. 31 GOAL</h1>
-        {/* h2에 클릭 이벤트 제거 및 스타일 수정 */}
+        <h1><div className="date">{createdTime ? getFormattedDate(new Date(createdTime).toISOString()) : getFormattedDate(new Date().toISOString())} GOAL </div></h1> {/* 목표 작성 날짜 표시 */}
         <h2>{goalText}</h2>
       </div>
       <div className="goal-check">
@@ -80,9 +106,8 @@ const GoalMain = () => {
           {goals.map((goal, index) => (
             <GoalItem
               key={index}
-              date={goal.date}
-              title={goal.title}
-              // action 제거 및 클릭 이벤트 수정
+              date={goal.createdTime ? getFormattedDate(new Date(goal.createdTime).toISOString()) : '날짜 없음'} // createdTime이 undefined일 경우
+              title={goal.goal}
               onClick={() => handleGoalItemClick(goal)}
               style={{ cursor: 'pointer' }}
             />

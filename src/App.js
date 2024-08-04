@@ -6,7 +6,6 @@ import Goal02 from './pages/goal/Goal02';
 import Goal03 from './pages/goal/Goal03';
 import Goal04 from './pages/goal/Goal04';
 import GoalMain from './pages/goal/GoalMain';
-import Header from './components/goal/Header';
 import GoalEdit from './pages/goal/GoalEdit';
 import Main from './pages/main/Main';
 import Login from './pages/login/Login';
@@ -58,7 +57,7 @@ function App() {
         <Route path="/goal02" element={<Goal02 goalText={goalText} setSortedTexts={setSortedTexts} />} />
         <Route path="/goal03" element={<Goal03 goalText={goalText} />} />
         <Route path="/goal04" element={<Goal04 goalText={goalText} sortedTexts={sortedTexts} />} />
-        <Route path="/goalEdit" element={<GoalEdit />} />
+        <Route path="/goalEdit/:goalId" element={<GoalEdit />} /> {/* goalId를 URL 파라미터로 전달 */}
       </Routes>
     </BrowserRouter>
   );

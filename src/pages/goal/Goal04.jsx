@@ -4,7 +4,15 @@ import '../../assets/scss/setting/resets.scss';
 import '../../assets/scss/goal/goal04.scss';
 import checkimg from '../../assets/img/goal/check.png';
 import Header from '../../components/goal/Header';
-import axios from 'axios';
+import { addGoal } from '../../services/apiService';
+
+const getFormattedDate = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
 const Goal04 = () => {
   const location = useLocation();
@@ -13,24 +21,29 @@ const Goal04 = () => {
 
   const handleSaveClick = async () => {
     try {
-      await axios.post('http://15.165.73.36:1234/goals', {
+      const goalData = {
         goal: goalText,
         actions: sortedTexts,
-      });
+        priority: true,
+        userId: 1, // 실제 사용자 ID로 변경
+        createdTime: new Date().toISOString(), // 작성 시간 추가
+      };
+      const savedGoal = await addGoal(goalData);
       alert('작성 성공!');
-      navigate('/goalMain', { state: { goalText, sortedTexts } });
+      navigate('/goalMain', { state: { goalText: savedGoal.goal, sortedTexts: savedGoal.actions, createdTime: savedGoal.createdTime } });
     } catch (error) {
+      console.error('작성 실패:', error);
       alert('실패');
     }
   };
 
   return (
     <div className="goal04">
-      <Header/>
+      <Header />
       <div className="content">
         <main>
           <h1 className="conclusion">Conclusion</h1>
-          <div className="date">2024 . 08 . 06</div>
+          <div className="date">{getFormattedDate()}</div> {/* 현재 날짜 표시 */}
           <div className="goal-text">{goalText}</div>
           <div className="goal-subtext">라는 목표를 이루기 위해</div>
           <div className="goals">
