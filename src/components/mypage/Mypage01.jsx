@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // axios를 직접 임포트
+import axios from 'axios';
 import def from '../../assets/img/mypage/profile.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,16 +10,19 @@ const Mypage01 = () => {
     username: '',
     motto: '',
     profilePicture: def,
-    monthlyGoal: 0,
-    monthlyProgress: 0,
+  });
+
+  const [countsData, setCount] = useState({
+    goalsCount: 0,
+    circumstancesCount: 0,
   });
 
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchUserProfile = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
-
       const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
         headers: {
           Authorization: `Bearer ${accessToken}`
@@ -32,23 +35,54 @@ const Mypage01 = () => {
         id: userProfile.id,
         username: userProfile.username,
         motto: userProfile.motto,
-        profilePicture: userProfile.profilePictureData ? `data:image/jpeg;base64,${userProfile.profilePicture}` : def,
-        monthlyGoal: userProfile.monthlyGoal || 0,
-        monthlyProgress: userProfile.monthlyProgress || 0,
+        profilePicture: userProfile.profilePicture ? `data:image/jpeg;base64,${userProfile.profilePicture}` : def,
       });
     } catch (error) {
-      setError(error.message);
-      console.error('Error fetching user profile:', error);
+      throw new Error('Error fetching user profile');
+    }
+  };
+
+  const fetchCounts = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      const countsResponse = await axios.get('http://15.165.73.36:1234/counts', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      return countsResponse.data;
+    } catch (error) {
+      throw new Error('Error fetching counts data');
     }
   };
 
   useEffect(() => {
-    fetchUserProfile();
+    const loadProfileAndCounts = async () => {
+      try {
+        await fetchUserProfile();
+        const countsData = await fetchCounts();
+        setCount({
+          goalsCount: countsData.goalsCount || 0,
+          circumstancesCount: countsData.circumstancesCount || 0,
+        });
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfileAndCounts();
   }, []);
 
   const modifyButtonClick = () => {
     navigate('/modify');
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className='profile'>
@@ -65,17 +99,19 @@ const Mypage01 = () => {
         <div className='container02'>
           <h3 className='h3'>활동 내역</h3>
           <div className='counter'>
-            <p className='p'>이번달 작성 목표</p>
-            <p className='p'>{userProfile.monthlyGoal}개</p>
+            <p className='p'>지금까지 작성한 목표</p>
+            <p className='p'>{countsData.goalsCount}개</p>
           </div>
           <div className='counter'>
-            <p className='p'>이번달 작성 상황</p>
-            <p className='p'>{userProfile.monthlyProgress}개</p>
+            <p className='p'>지금까지 작성한 상황</p>
+            <p className='p'>{countsData.circumstancesCount}개</p>
           </div>
         </div>
       </div>
 
       <button className='modify' onClick={modifyButtonClick}>개인정보 수정하기</button>
+
+      {error && <p className='error'>Error: {error}</p>}
     </div>
   );
 };

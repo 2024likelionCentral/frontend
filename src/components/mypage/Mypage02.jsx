@@ -2,41 +2,61 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../../assets/scss/mypage/Calendar.css';
+import axios from 'axios';
 import arrow from '../../assets/img/mypage/arrow.svg';
 
 const Mypage02 = () => {
     const [date, setDate] = useState(new Date());
+    const [circumstancesCount, setCircumstancesCount] = useState(null);
+    const [goalsCount, setGoalsCount] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleDateChange = (newDate) => {
         setDate(newDate);
     };
 
-    const [hasEntries, setHasEntries] = useState(null);
-    
-    useEffect(() => {
-        // 서버에서 데이터를 가져오는 부분을 구현하세요
-        // 예를 들어, fetch API를 사용할 수 있습니다.
-        // fetch('/api/entries')
-        //   .then(response => response.json())
-        //   .then(data => setHasEntries(data.hasEntries))
-        //   .catch(error => console.error('Error fetching data:', error));
+    const fetchCountsByDate = async (formattedDate) => {
+        try {
+            const accessToken = localStorage.getItem('accessToken');
+            const response = await axios.get(`http://15.165.73.36:1234/counts/byDate?date=${formattedDate}`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            throw new Error('Error fetching counts data');
+        }
+    };
 
-        // 테스트용으로 하드코딩된 값
-        setTimeout(() => {
-            // 7월 12일을 선택했을 때 작성 내역이 없는 것으로 설정
-            if (date.getMonth() === 6 && date.getDate() === 12) {
-                setHasEntries(false);
-            } else {
-                setHasEntries(true); // 기본적으로 작성 내역이 있는 경우로 설정
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            const formattedDate = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
+            try {
+                const data = await fetchCountsByDate(formattedDate);
+                setCircumstancesCount(data.circumstancesCount);
+                setGoalsCount(data.goalsCount);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setError(error.message);
+                setCircumstancesCount(0);
+                setGoalsCount(0);
+            } finally {
+                setLoading(false);
             }
-        }, 1000); // 1초 후 데이터 로드 완료를 시뮬레이션
-    }, [date]); // `date` 상태가 변경될 때마다 `useEffect`가 실행되도록 설정
+        };
+
+        fetchData();
+    }, [date]);
 
     const formatDate = (date) => {
         return `${date.getFullYear()}.${('0' + (date.getMonth() + 1)).slice(-2)}.${('0' + date.getDate()).slice(-2)}`;
     };
 
-    const tileContent = ({ date, view }) => { // 날짜를 새로 만듦 
+    const tileContent = ({ date, view }) => {
         if (view === 'month') {
             return (
                 <div className="custom-tile">
@@ -55,22 +75,23 @@ const Mypage02 = () => {
                     value={date}
                     tileContent={tileContent}
                 />
-
-                {/* 날짜 선택 표시 제거 */}
-                {/* <p>Selected date: {date.toDateString()}</p> */}
             </div>
 
             <div className='detail'>
                 <h3 className='h3'>날짜별 작성 내역</h3>
 
-                {hasEntries === null ? (
-                    <p className='p'>Loading...</p> // 데이터 로딩 중일 때 표시할 내용
-                ) : !hasEntries ? (
+                {loading ? (
+                    <p className='p'>Loading...</p>
+                ) : error ? (
                     <div className='content01'>
                         <p className='p'>{formatDate(date)}</p>
-                        <h4 className='h4'>작성하신 내역이 없습니다.</h4>
+                        <h4 className='h4'>Error fetching data: {error}</h4>
                     </div>
-
+                ) : (circumstancesCount === 0 && goalsCount === 0) ? (
+                    <div className='content01'>
+                        <p className='p'>{formatDate(date)}</p>
+                        <h4 className='h4'>작성하신 기록이 없습니다.</h4>
+                    </div>
                 ) : (
                     <div className='content01'>
                         <p className='p'>{formatDate(date)}</p>
@@ -79,15 +100,15 @@ const Mypage02 = () => {
                             <div className='content02'>
                                 <h4 className='h4'>목표 설정</h4>
                                 <h4 className='h4'>|</h4>
-                                <h4 className='h4'>1개</h4>
-                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표'/></a>
+                                <h4 className='h4'>{goalsCount}개</h4>
+                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표' /></a>
                             </div>
-                            
+
                             <div className='content02'>
                                 <h4 className='h4'>상황 인지</h4>
                                 <h4 className='h4'>|</h4>
-                                <h4 className='h4'>1개</h4>
-                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표'/></a>
+                                <h4 className='h4'>{circumstancesCount}개</h4>
+                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표' /></a>
                             </div>
                         </div>
                     </div>
