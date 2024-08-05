@@ -5,11 +5,11 @@ import '../../assets/scss/goal/goaledit.scss';
 import Header from '../../components/goal/Header';
 import { getGoalById, setGoalPriority, deleteGoal } from '../../services/apiService';
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
-  const day = String(date.getDate()).padStart(2, '0');
+const getFormattedDate = (date) => {
+  const dateObj = new Date(date);
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(dateObj.getDate()).padStart(2, '0');
   return `${year} . ${month} . ${day}`;
 };
 
@@ -26,7 +26,7 @@ const GoalEdit = () => {
         const goalData = await getGoalById(goalId);
         setGoalText(goalData.goal);
         setSortedTexts(goalData.actions);
-        setCreatedTime(goalData.createdTime); // createdTime 설정
+        setCreatedTime(goalData.createdTime);
       } catch (error) {
         console.error('목표 조회 실패:', error);
         alert('목표 조회에 실패했습니다.');
@@ -41,6 +41,12 @@ const GoalEdit = () => {
   const handleSaveClick = async () => {
     try {
       await setGoalPriority(goalId);
+      const priorityGoal = {
+        date: getFormattedDate(createdTime),
+        goalText,
+        sortedTexts,
+      };
+      localStorage.setItem('priorityGoal', JSON.stringify(priorityGoal));
       alert('상위 목표로 설정되었습니다.');
       navigate('/goalMain', { state: { goalText, sortedTexts } });
     } catch (error) {
@@ -66,7 +72,7 @@ const GoalEdit = () => {
       <div className="content">
         <main>
           <h1 className="conclusion">Conclusion</h1>
-          <div className="date">{formatDate(createdTime)}</div>
+          <div className="date">{getFormattedDate(createdTime)}</div>
           <div className="goal-text">{goalText}</div>
           <div className="goal-subtext">라는 목표를 이루기 위해</div>
           <div className="goals">

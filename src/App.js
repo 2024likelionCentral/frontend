@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect  } from 'react'
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Goal01 from './pages/goal/Goal01';
 import Goal02 from './pages/goal/Goal02';
@@ -20,6 +20,7 @@ import Action3 from './pages/action/Action_3.jsx';
 import Action4 from './pages/action/Action_4.jsx';
 import Action5 from './pages/action/Action_5.jsx';
 import Action6 from './pages/action/Action_6.jsx';
+import { getPriorityGoal } from './services/apiService';
 
 function App() {
   const [goalText, setGoalText] = useState('');
@@ -28,6 +29,17 @@ function App() {
   const [action2Values, setAction2Values] = useState([]);
   const [action3Values, setAction3Values] = useState([]);
   const [action4Values, setAction4Values] = useState('');
+  const [priorityGoal, setPriorityGoal] = useState({ date: '', goal: '' });
+  
+
+  useEffect(() => {
+    const fetchPriorityGoal = async () => {
+      const goalData = await getPriorityGoal();
+      setPriorityGoal(goalData);
+    };
+
+    fetchPriorityGoal();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -48,7 +60,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/enter" element={<Enter />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/main" element={<Main goalData={priorityGoal} />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/modify" element={<Modify />} />
         <Route path='/circumstancePage' element={<CircumstancePage/>} />

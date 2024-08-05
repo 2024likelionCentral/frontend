@@ -44,20 +44,13 @@ export const getGoalById = async (goalId) => {
     console.error('Failed to fetch goal:', error);
     throw error;
   }
-  try {
-    const response = await apiClient.get(`/goals/${goalId}`);
-    return response.data;
-  } catch (error) {
-    console.error('Failed to fetch goal by id:', error.response ? error.response.data : error.message);
-    throw error;
-  }
 };
 
 // 목표 목록을 가져오는 함수
 export const getGoals = async () => {
   try {
     const response = await apiClient.get('/goals');
-    return response.data;
+    return response.data.goals; // 응답 데이터에서 goals 배열만 반환
   } catch (error) {
     console.error('Failed to fetch goals:', error);
     throw error;
@@ -84,5 +77,15 @@ export const deleteGoal = async (goalId) => {
   } catch (error) {
     console.error('Failed to delete goal:', error.response ? error.response.data : error.message);
     throw error;
+  }
+};
+
+export const getPriorityGoal = async () => {
+  try {
+    const response = await apiClient.get('/goals/priority');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch priority goal:', error);
+    return { date: '', goal: '' };
   }
 };
