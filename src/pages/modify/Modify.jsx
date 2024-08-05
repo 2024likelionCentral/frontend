@@ -206,6 +206,7 @@ return (
               name="mypage_image"
               id="mypage_image"
               ref={fileInputRef}
+              accept="image/*"
               style={{ display: 'none' }}
               onChange={handleFileChange}
             />
