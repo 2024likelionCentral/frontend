@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../../components/main/Nav';
 import '../../assets/scss/header/header.scss';
+import popup_icon from '../../assets/img/action/popup_icon.svg'
 import '../../assets/scss/action/popup.scss'; // 팝업 스타일링 파일 경로에 맞게 수정하세요
 import logo from '../../assets/img/header/meta_logo.png'; // 로고 이미지를 경로에 맞게 수정하세요
 
@@ -60,6 +61,7 @@ function Header() {
         {isPopupVisible && (
             <div className="popup-overlay">
                 <div className="popup-content">
+                    <img src={popup_icon} alt="" />
                     <p>작성 중단 시 내용이 저장되지 않고 삭제됩니다.<br />그래도 작성을 중단하시겠어요?</p>
                     <div className="popup-buttons">
                         <button onClick={handlePopupConfirm}>예, 그만 쓸래요.</button>
