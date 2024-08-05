@@ -21,6 +21,7 @@ import Action3 from './pages/action/Action_3.jsx';
 import Action4 from './pages/action/Action_4.jsx';
 import Action5 from './pages/action/Action_5.jsx';
 import Action6 from './pages/action/Action_6.jsx';
+import Mypage01 from './components/mypage/Mypage01.jsx';
 
 function App() {
   const [goalText, setGoalText] = useState('');
@@ -51,6 +52,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/main" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/user-profile/:id" element={<Mypage01 />} />
         <Route path="/modify" element={<Modify />} />
         <Route path='/circumstancePage' element={<CircumstancePage/>} />
         <Route path="/goalMain" element={<GoalMain />} />

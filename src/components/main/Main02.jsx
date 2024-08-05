@@ -1,16 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import Togle01 from '../../assets/img/main/1.svg'
 import Togle02 from '../../assets/img/main/2.svg'
 import pen from '../../assets/img/main/new.svg'
 import line from '../../assets/img/main/line.svg'
 import detail from '../../assets/img/main/more.svg'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 
 const Main02 = () => {
+    
 
     const navigate = useNavigate();
+
+    const [userProfile, setProfile] = useState({
+        id: '',
+        username: '',
+        motto: '',
+      });
+
+      useEffect(() => {
+        const fetchUserProfile = async () => {
+          try {
+            const accessToken = localStorage.getItem('accessToken');
+    
+            const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              }
+            });
+    
+            const userProfile = profileResponse.data;
+    
+            setProfile({
+              id: userProfile.id,
+              username: userProfile.username,
+              motto: userProfile.motto,
+            });
+          } catch (error) {
+            setError(error.message);
+            console.error('Error fetching user profile:', error);
+          }
+        };
+    
+        fetchUserProfile();
+      }, []);
 
     const circumstanceButtonClick = () => {
         navigate('/circumstancePage');
@@ -19,10 +55,6 @@ const Main02 = () => {
     const goalButtonClick = () => {
         navigate('/goalMain');
     }
-
-    const mypageButtonClick = () => {
-        navigate('/mypage');
-      }
 
       const newGoalButtonClick = () => {
         navigate('/goal01');
@@ -38,7 +70,7 @@ const Main02 = () => {
         <div className='welcome'>
             <p className='p'>Welcome To Metalog</p>
             <div className='underline01'/>
-            <p className='p'>soobini1121 Dashboard</p>
+            <p className='p'>{userProfile.username} Dashboard</p>
             <div className='underline02'/>
         </div>
 

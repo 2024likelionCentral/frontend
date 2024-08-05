@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import googlelogo from '../../assets/img/login/googlelogo.svg';
 import { signup } from '../../services/apiService';
+import './CheckboxStyles.css';
 
 const Signin02 = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    email: '',
+    username: '',
     password: '',
     password2: ''
   });
 
   const [error, setError] = useState(null);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,23 +24,31 @@ const Signin02 = () => {
     });
   };
 
+  const handleCheckboxChange = (e) => {
+    setAgreeToTerms(e.target.checked);
+  }
+
   const signButtonClick = async () => {
     if (form.password !== form.password2) {
-      setError('Passwords do not match');
+      setError('비밀번호가 일치하지 않습니다.');
+      return;
+    } else if (!agreeToTerms) {
+      setError('이용약관 및 개인정보 처리방침에 동의해 주십시오.');
       return;
     }
 
     try {
       const userData = {
-        username: form.email,
+        username: form.username,
         password: form.password,
         role: 'ROLE_USER'
       };
       const response = await signup(userData);
       alert('Signup successful!');
-      navigate('/main');
+      navigate('/enter');
     } catch (error) {
-      setError(error.response ? error.response.data : 'Signup failed');
+      setError('이미 있는 아이디입니다.');
+      return;
     }
   };
 
@@ -46,17 +56,21 @@ const Signin02 = () => {
     console.log('버튼 클릭됨!');
   };
 
+  const loginButtonClick = () => {
+    navigate('/enter');
+  };
+
   return (
     <div className='signin02_wrap'>
       <div className='enterfield'>
         <h1 className='signup'>회원가입</h1>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red', fontWeight: '600',marginTop: '10px'}}>{error}</p>}
         <input
           type='text'
           className='email'
-          name='email'
+          name='username'
           placeholder='아이디'
-          value={form.email}
+          value={form.username}
           onChange={handleChange}
         />
         <input
@@ -76,10 +90,18 @@ const Signin02 = () => {
           value={form.password2}
           onChange={handleChange}
         />
-        <div className='save'>
-          <input type='checkbox' className='checkbox' />
-          <p className='infosave'>이용약관 및 개인정보 처리방침에 동의합니다.</p>
-        </div>
+        <div className='checkbox-container'>
+            <label className='checkbox-label'>
+              <input
+                type='checkbox'
+                id='terms'
+                checked={agreeToTerms}
+                onChange={handleCheckboxChange}
+              />
+              <div className='checkbox-custom'></div>
+              <p className='infosave'>이용약관 및 개인정보 처리방침에 동의합니다.</p>
+            </label>
+          </div>
         <button className='signbtn' onClick={signButtonClick}>회원가입</button>
       </div>
       <div className='line'>
@@ -92,7 +114,7 @@ const Signin02 = () => {
       </button>
       <div className='change_area'>
         <p className='optional'>이미 Metalog 회원이신가요?</p>
-        <p className='turn_login'>로그인</p>
+        <p className='turn_login' onClick={loginButtonClick}>로그인</p>
       </div>
     </div>
   );
