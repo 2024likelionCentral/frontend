@@ -26,12 +26,20 @@ const Signin02 = () => {
 
   const handleCheckboxChange = (e) => {
     setAgreeToTerms(e.target.checked);
-  }
+  };
+
+  const isPasswordValid = (password) => {
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+    return passwordRegex.test(password);
+  };
 
   const signButtonClick = async () => {
     if (form.password !== form.password2) {
       setError('비밀번호가 일치하지 않습니다.');
       return;
+    } else if (!isPasswordValid(form.password)) {
+      setError('비밀번호를 영문, 숫자 조합의 8자 이상 20자 이하로 설정해야 합니다.');
+      return; 
     } else if (!agreeToTerms) {
       setError('이용약관 및 개인정보 처리방침에 동의해 주십시오.');
       return;
@@ -64,7 +72,7 @@ const Signin02 = () => {
     <div className='signin02_wrap'>
       <div className='enterfield'>
         <h1 className='signup'>회원가입</h1>
-        {error && <p style={{ color: 'red', fontWeight: '600',marginTop: '10px'}}>{error}</p>}
+        {error && <p style={{ color: 'red', fontWeight: '600', marginTop: '10px' }}>{error}</p>}
         <input
           type='text'
           className='email'
@@ -91,17 +99,17 @@ const Signin02 = () => {
           onChange={handleChange}
         />
         <div className='checkbox-container'>
-            <label className='checkbox-label'>
-              <input
-                type='checkbox'
-                id='terms'
-                checked={agreeToTerms}
-                onChange={handleCheckboxChange}
-              />
-              <div className='checkbox-custom'></div>
-              <p className='infosave'>이용약관 및 개인정보 처리방침에 동의합니다.</p>
-            </label>
-          </div>
+          <label className='checkbox-label'>
+            <input
+              type='checkbox'
+              id='terms'
+              checked={agreeToTerms}
+              onChange={handleCheckboxChange}
+            />
+            <div className='checkbox-custom'></div>
+            <p className='infosave'>이용약관 및 개인정보 처리방침에 동의합니다.</p>
+          </label>
+        </div>
         <button className='signbtn' onClick={signButtonClick}>회원가입</button>
       </div>
       <div className='line'>
