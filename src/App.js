@@ -45,7 +45,7 @@ function App() {
         <Route path="/action5"
           element={<Action5 inputValue={inputValue} action2Values={action2Values} action3Values={action3Values} action4Values={action4Values} />}
         />
-        <Route path="/action6" element={<Action6 />} />
+        <Route path="/action6/:id" element={<Action6 />} />
         <Route path="/" element={<Login />} />
         <Route path="/enter" element={<Enter />} />
         <Route path="/signin" element={<Signin />} />

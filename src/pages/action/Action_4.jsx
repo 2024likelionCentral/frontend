@@ -4,10 +4,21 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../../assets/scss/action/action04.scss';
 import Header from '../../components/action/Header';
 
+const getCurrentFormattedDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year} . ${month} . ${day}`;
+};
 
-const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }) => {
+const Action_4 = ({ inputValue, action2Values, action3Values  }) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [currentDate, setCurrentDate] = useState('');
+    useEffect(() => {
+        setCurrentDate(getCurrentFormattedDate());
+    }, []);
 
     const { items, action1Value, action3Values: receivedAction3Values } = location.state || {
         items: action2Values,
@@ -29,7 +40,6 @@ const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }
 
     };
     const handleNextClick = () => {
-        setAction4Values(conclusionValue);
         navigate('/action5', {
             state: { items, action1Value, action3Values: receivedAction3Values, action4Values:conclusionValue }
         });
@@ -37,11 +47,11 @@ const Action_4 = ({ inputValue, action2Values, action3Values, setAction4Values }
 
     return (
         <>
-        <Header/>
-        <div className="action04">
+      <Header />
+      <div className="action04">
             <div className="action_back">
                 <main>
-                    <div className="date">2024 . 08 . 06</div>
+                    <div className="date">{currentDate}</div>
                     <div className="action">{action1Value}</div>
                     <p className="title">상황에서</p>
                     <div className="feeling_div">
