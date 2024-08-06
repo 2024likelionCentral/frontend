@@ -15,14 +15,18 @@ export const signup = async (userData) => {
 export const login = async (credentials) => {
   try {
     const response = await apiClient.post('/auth/login', credentials);
-    localStorage.setItem('tokenType', response.data.tokenType);
+
     localStorage.setItem('accessToken', response.data.accessToken);
+    localStorage.setItem('refreshToken', response.data.refreshToken);
+    localStorage.setItem('userId', response.data.userId); // userId 저장
+
     return response.data;
   } catch (error) {
     console.error('Login failed:', error);
     throw error;
   }
 };
+
 
 // 목표 추가 함수
 export const addGoal = async (goalData) => {
@@ -35,6 +39,19 @@ export const addGoal = async (goalData) => {
   }
 };
 
+//액세스 토큰 발급
+export const fetchUserData = async () => {
+  try {
+    const response = await apiClient.get('/auth/refresh');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch user data:', error);
+
+    throw error;
+  }
+};
+
+
 // 목표 조회 함수
 export const getGoalById = async (goalId) => {
   try {
@@ -45,6 +62,18 @@ export const getGoalById = async (goalId) => {
     throw error;
   }
 };
+
+export const saveActionData = async (data) => {
+  try {
+    const response = await apiClient.post('/circumstances', data);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to save action data:', error);
+
+    throw error;
+  }
+};
+
 
 // 목표 목록을 가져오는 함수
 export const getGoals = async () => {
@@ -66,9 +95,22 @@ export const setGoalPriority = async (goalId) => {
     return response.data;
   } catch (error) {
     console.error('Failed to set goal priority:', error.response ? error.response.data : error.message);
+    
     throw error;
   }
 };
+
+export const getCircumstance = async (id) => {
+  try {
+    const response = await apiClient.get(`/circumstances/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch circumstance data:', error);
+
+    throw error;
+  }
+};
+
 
 export const deleteGoal = async (goalId) => {
   try {
@@ -80,6 +122,18 @@ export const deleteGoal = async (goalId) => {
   }
 };
 
+export const deleteCircumstance = async (id) => {
+  try {
+    const response = await apiClient.delete(`/circumstances/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch circumstance data:', error);
+
+    throw error;
+  }
+};
+
+
 export const getPriorityGoal = async () => {
   try {
     const response = await apiClient.get('/goals/priority');
@@ -87,5 +141,15 @@ export const getPriorityGoal = async () => {
   } catch (error) {
     console.error('Failed to fetch priority goal:', error);
     return { date: '', goal: '' };
+    }
+};
+
+export const gettotalCircumstances = async () => {
+  try {
+    const response = await apiClient.get('/circumstances');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch circumstances:', error);
+    throw error;
   }
 };

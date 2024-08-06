@@ -57,6 +57,7 @@ const Signin02 = () => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <input
           type='text'
+
           className='username'
           name='username'
           placeholder='아이디'
