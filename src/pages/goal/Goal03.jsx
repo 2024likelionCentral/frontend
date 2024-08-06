@@ -29,12 +29,20 @@ const Goal03 = () => {
     navigate('/goal04', { state: { goalText: location.state.goalText, sortedTexts: items } });
   };
 
+  const getFormattedDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year} . ${month} . ${day}`;
+  };
+
   return (
     <div className="goal03">
       <Header />
       <div className="content">
         <main>
-          <div className="date">2024 . 08 . 06</div>
+          <div className="date">{getFormattedDate()}</div>
           <div className="goal-subtext">우선순위는</div>
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="goals">

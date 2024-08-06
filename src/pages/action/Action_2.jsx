@@ -4,6 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import '../../assets/scss/action/action02.scss';
 import Header from '../../components/action/Header';
 
+const getCurrentFormattedDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year} . ${month} . ${day}`;
+};
+
 const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     const maxItems = 3; // 최대 항목 개수
     const [items, setItems] = useState(action2Values.length > 0 ? action2Values : [{ id: 1, value: '' }]); // 항목 상태 관리
@@ -11,6 +19,10 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     const navigate = useNavigate();
 
     const [isShow, setIsshow] = useState(false);
+    const [currentDate, setCurrentDate] = useState('');
+    useEffect(() => {
+        setCurrentDate(getCurrentFormattedDate());
+    }, []);
 
     useEffect(() => {
         setItems(action2Values.length > 0 ? action2Values : [{ id: 1, value: '' }]);
@@ -20,14 +32,15 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     // 항목 추가 함수
     const addItem = () => {
         if (items.length < maxItems) {
-            setItems([...items, { id: items.length + 1, value: '' }]);
+            const newId = items.length > 0 ? items[items.length - 1].id + 1 : 1;
+            setItems([...items, { id: newId, value: '' }]);
         }
     };
 
     // 항목 제거 함수
-    const removeItem = () => {
+    const removeItem = (id) => {
         if (items.length > 1) {
-            setItems(items.slice(0, -1));
+            setItems(items.filter(item => item.id !== id));
         }
     };
 
@@ -36,22 +49,21 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
     };
 
     const handleNextClick = () => {
-        setAction2Values(items);
         navigate('/action3', { state: { items, action1Value: inputValue } });
     };
 
     return (
         <>
-        <Header/>
-        <div className="action02">
+      <Header />
+      <div className="action02">
             <div className="action_back">
                 <main>
-                    <div className="date">2024 . 08 . 06</div>
+                    <div className="date">{currentDate}</div>
                     <div className="title">나는 이 상황에서</div>
 
                     <div className="input-container">
                         {items.map((item, index) => (
-                            <div key={index}>
+                            <div key={item.id}>
                                 <input
                                     className="input"
                                     type="text"
@@ -66,10 +78,8 @@ const Action_2 = ({ inputValue, setAction2Values, action2Values }) => {
                                 />
                                 {(isShow === true) && (items.length < maxItems) ? <button className='plus' onClick={addItem} disabled={items.length >= maxItems}></button>
                                     : null}
-                                {(isShow === true) && (items.length > 1) ? <button className='back' onClick={removeItem} disabled={items.length <= 1}></button>
+                                {(isShow === true) && (items.length > 1) ? <button className='back' onClick={() => removeItem(item.id)} disabled={items.length <= 1}></button>
                                     : null}
-
-
                             </div>
                         ))}
                     </div>

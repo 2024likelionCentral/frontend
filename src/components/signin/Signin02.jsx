@@ -68,6 +68,7 @@ const Signin02 = () => {
     navigate('/enter');
   };
 
+
   return (
     <div className='signin02_wrap'>
       <div className='enterfield'>
@@ -75,7 +76,7 @@ const Signin02 = () => {
         {error && <p style={{ color: 'red', fontWeight: '600', marginTop: '10px' }}>{error}</p>}
         <input
           type='text'
-          className='email'
+          className='username'
           name='username'
           placeholder='아이디'
           value={form.username}
@@ -122,7 +123,9 @@ const Signin02 = () => {
       </button>
       <div className='change_area'>
         <p className='optional'>이미 Metalog 회원이신가요?</p>
+
         <p className='turn_login' onClick={loginButtonClick}>로그인</p>
+
       </div>
     </div>
   );

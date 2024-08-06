@@ -5,12 +5,13 @@ import '../../assets/scss/action/action03.scss';
 import Header from '../../components/action/Header';
 
 
-const Action_3 = ({ inputValue, action2Values, setAction3Values }) => {
+const Action_3 = ({ inputValue, action2Values, setAction3Values  }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { items, action1Value } = location.state || { items: action2Values, action1Value: inputValue };
     const [inputValues, setInputValues] = useState(Array(items.length).fill(''));
     const maxLength = 300;
+    
 
     const handleInputChange = (index, event) => {
         const newInputValues = [...inputValues];
@@ -30,8 +31,8 @@ const Action_3 = ({ inputValue, action2Values, setAction3Values }) => {
 
     return (
         <>
-        <Header/>
-        <div className="action03">
+      <Header />
+      <div className="action03">
             <div className="action_back">
                 <main>
                 {items.map((item, index) => (
