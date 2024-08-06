@@ -34,7 +34,6 @@ const Modify = () => {
   }, error => {
     return Promise.reject(error);
   });
-  
 
   const refreshToken = async () => {
     try {
@@ -174,7 +173,7 @@ const Modify = () => {
       alert('프로필이 성공적으로 업데이트되었습니다!');
       navigate('/mypage'); // 성공적으로 업데이트 후 Mypage로 이동
     } catch (error) {
-      setError('프로필 업데이트에 실패했습니다. 다시 시도해 주세요.');
+      setError('100KB 이내의 사진을 올려주세요!');
       if (error.response) {
         console.error('Error response data:', error.response.data);
       } else {
@@ -201,8 +200,7 @@ const Modify = () => {
 
           <div className='profile_img'>
             <div id="myPhoto">
-              <img src={profileImage} className="Profile" />
-              <img src={profile} className='img_default'/>
+              <img src={profileImage} alt="" className="Profile" />
             </div>
             <form method="post">
               <input

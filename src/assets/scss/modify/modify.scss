@@ -60,6 +60,18 @@
         justify-content: flex-start;
         align-items: flex-end;
         margin-top: 36px; 
+        form{
+            margin-left: 200px;
+        }
+        #myPhoto{
+            width: 200px;
+            height: 200px;
+            border: 2px solid #E6F7CD;
+            border-radius: 50%;
+            position: relative;
+            background-size: cover;
+            background-image: url(../../img/mypage/profile.svg);
+        }
 
         .Profile {
             position: relative;
