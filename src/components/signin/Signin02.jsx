@@ -7,7 +7,7 @@ const Signin02 = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    email: '',
+    username: '',
     password: '',
     password2: ''
   });
@@ -30,7 +30,7 @@ const Signin02 = () => {
 
     try {
       const userData = {
-        username: form.email,
+        username: form.username,
         password: form.password,
         role: 'ROLE_USER'
       };
@@ -46,6 +46,10 @@ const Signin02 = () => {
     console.log('버튼 클릭됨!');
   };
 
+  const loginButtonClick = () => {
+    navigate('/enter');
+  }
+
   return (
     <div className='signin02_wrap'>
       <div className='enterfield'>
@@ -53,10 +57,11 @@ const Signin02 = () => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <input
           type='text'
-          className='email'
-          name='email'
-          placeholder='이메일'
-          value={form.email}
+
+          className='username'
+          name='username'
+          placeholder='아이디'
+          value={form.username}
           onChange={handleChange}
         />
         <input
@@ -92,7 +97,7 @@ const Signin02 = () => {
       </button>
       <div className='change_area'>
         <p className='optional'>이미 Metalog 회원이신가요?</p>
-        <p className='turn_login'>로그인</p>
+        <p className='turn_login'onClick={loginButtonClick}>로그인</p>
       </div>
     </div>
   );
