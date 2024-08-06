@@ -62,10 +62,21 @@
         margin-top: 36px; 
 
         .Profile {
+            position: relative;
             width: 200px;
             height: 200px;
             border: 2px solid #E6F7CD;
             border-radius: 50%;
+            z-index: 998;
+        }
+
+        .img_default {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #E6F7CD;
+            border-radius: 50%;
+            position: relative;
+            left: -200px;
         }
 
         .mypage_image {
@@ -78,7 +89,7 @@
         #add {
             width: 238px;
             height: 56px;
-            margin-left: 100px;
+            margin-left: -100px;
         }
 
         #remove {

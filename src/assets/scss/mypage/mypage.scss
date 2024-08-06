@@ -29,19 +29,28 @@
         border: 2px solid #FFFFFF;
         background-color: rgba(255, 255, 255, 0.1);
 
-
         .img {
+            position: relative;
+            top: 100px;
             width: 158px;
             height: 158px;
             border-radius: 50%;
             border: 2px solid #E6F7CD;
+            z-index: 998;
+        }
+        
+        .img_default {
+            position: relative;
+            top: -58px;
+            width: 158px;
+            height: 158px;
+            border-radius: 50%;
         }
 
         .id {
             font-size: 28px;
             color: #444444;
             font-weight: normal;
-            margin-top: 36px;
         }
 
         .line {

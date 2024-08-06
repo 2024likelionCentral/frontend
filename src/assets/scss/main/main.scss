@@ -32,13 +32,13 @@
                 font-weight: 600;
                 margin-top: 9px;
             }
-    
+
             .underline01 {
                 width: 350px;
                 border: 1px solid #F2B4C1;
                 margin-top: 9px;
             }
-    
+
             .underline02 {
                 width: 540px;
                 border: 1px solid #F2B4C1;
@@ -52,7 +52,7 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 64px;
-    
+
             .proprity {
                 display: flex;
                 justify-content: left;
@@ -80,6 +80,7 @@
                         font-size: 36px;
                         color: #444444;
                     }
+
                     .goal_right {
                         margin-left: 24px;
                     }
@@ -123,7 +124,8 @@
                             color: #444444;
                         }
                     }
-                    .content03{
+
+                    .content03 {
                         display: flex;
                         margin-top: 14px;
 
@@ -141,12 +143,13 @@
                     }
 
                 }
-                
+
             }
 
             .go_to_goal {
-                display:  flex;
+                display: flex;
                 flex-direction: column;
+
                 .goalbtn {
                     width: 316px;
                     height: 56px;
@@ -160,7 +163,7 @@
                 .goalbtn:hover {
                     cursor: pointer;
                 }
-                
+
                 .write {
                     display: flex;
                     align-items: center;
@@ -199,7 +202,7 @@
                     color: #444444;
                 }
 
-                .content04{
+                .content04 {
                     display: flex;
                     align-items: center;
 
@@ -223,12 +226,16 @@
 
             .container02 {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 margin-top: 27px;
+                margin-left: -15px;
+                margin-right: -15px;
 
                 .box {
                     width: 255px;
                     height: 120px;
+                    margin-right: 15px;
+                    margin-left: 15px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -237,7 +244,7 @@
                     border: 2px solid #FFFFFF;
                     border-radius: 20px;
                     cursor: pointer;
-                    
+
                     .h3 {
                         font-size: 20px;
                         font-weight: normal;
@@ -253,7 +260,7 @@
                 padding: 60px;
                 width: 1110px;
                 height: 256px;
-                border: 2px solid #FFFFFF ;
+                border: 2px solid #FFFFFF;
                 box-shadow: inset -12.5px 12.5px 12.5px #FFFFFF;
                 box-shadow: inset 12.5px -12.5px 12.5px #C2C2C21A;
                 border-radius: 20px;
@@ -269,6 +276,7 @@
                         color: #444444;
                         font-weight: normal;
                     }
+
                     .p {
                         font-size: 20px;
                         font-weight: 600;
@@ -282,6 +290,6 @@
             }
 
         }
-        
+
     }
 }

@@ -18,7 +18,9 @@ const getFormattedDate = (date) => {
 const GoalMain = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { goalText, sortedTexts, createdTime } = location.state || { goalText: '', sortedTexts: [], createdTime: '' };
+  const [priorityGoal, setPriorityGoal] = useState({ goalText: '', sortedTexts: [], createdTime: '' });
+
+  //const { goalText, sortedTexts, createdTime } = location.state || { goalText: '', sortedTexts: [], createdTime: '' };
 
   const [goals, setGoals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,16 +36,13 @@ const GoalMain = () => {
         setGoals(sortGoals(fetchedGoals, '등록순')); // 기본 정렬: 등록순
 
         // 로컬 스토리지에서 상위 목표를 불러오기
-        const storedPriorityGoal = JSON.parse(localStorage.getItem('priorityGoal'));
-        if (storedPriorityGoal) {
-          const { date, goalText, sortedTexts } = storedPriorityGoal;
-          const newGoal = { id: fetchedGoals.length + 1, createdTime: date, goal: goalText, actions: sortedTexts, priority: true };
-
-          // 중복 방지를 위해 기존 goals에서 동일한 목표가 있는지 확인
-          // const goalExists = fetchedGoals.some(goal => goal.goal === newGoal.goal && goal.createdTime === newGoal.createdTime);
-          // if (!goalExists) {
-          //   setGoals(prevGoals => sortGoals([...prevGoals, newGoal], '등록순'));
-          // }
+        const priorityGoal = fetchedGoals.find(goal => goal.priority);
+        if (priorityGoal) {
+          setPriorityGoal({
+            goalText: priorityGoal.goal,
+            sortedTexts: priorityGoal.actions,
+            createdTime: priorityGoal.createdTime,
+          });
         }
       } catch (error) {
         console.error('Failed to fetch goals:', error);
@@ -89,8 +88,8 @@ const GoalMain = () => {
       <Header />
       <p>Goal cognition</p>
       <div className="goal-header">
-        <h1><div className="date">{createdTime ? getFormattedDate(createdTime) : getFormattedDate(new Date())} GOAL </div></h1> {/* 목표 작성 날짜 표시 */}
-        <h2>{goalText}</h2>
+        <h1><div className="date">{priorityGoal.createdTime ? getFormattedDate(priorityGoal.createdTime) : getFormattedDate(new Date())} GOAL </div></h1> {/* 목표 작성 날짜 표시 */}
+        <h2>{priorityGoal.goalText}</h2>
       </div>
       <div className="goal-check">
         <div className="check-here">
@@ -98,7 +97,7 @@ const GoalMain = () => {
           <h4>작성하신 실천 방법을 확인하며 인지 연습을 해보세요.</h4>
         </div>
         <ul>
-          {sortedTexts.map((text, index) => (
+          {priorityGoal.sortedTexts.map((text, index) => (
             <div className="goal-item" key={index}>
               <span className="priority">{index + 1}</span>
               {text}
@@ -140,7 +139,7 @@ const GoalMain = () => {
         <div className="execute">
           <ul>
             <h2>실천 방법</h2>
-            {sortedTexts.map((text, index) => (
+            {priorityGoal.sortedTexts.map((text, index) => (
               <div className="goal-item" key={index}>
                 <span className="priority">{index + 1}</span>
                 {text}

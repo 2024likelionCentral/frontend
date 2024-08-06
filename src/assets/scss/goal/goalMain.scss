@@ -27,7 +27,9 @@ body, html, #root {
   p{
     font-size: 30px;
     margin-top: 100px;
-    margin-left: 675px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   .goal-header {
     display: flex;
@@ -216,7 +218,6 @@ body, html, #root {
     display: flex;
     justify-content: center;
     margin-top: 60px;
-    margin-right: 40px;
 
     .new-btn {
       padding: 15px 30px;

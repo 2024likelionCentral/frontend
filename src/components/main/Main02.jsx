@@ -9,68 +9,65 @@ import { useNavigate } from 'react-router-dom';
 import { gettotalCircumstances } from '../../services/apiService';
 import axios from 'axios';
 
-
 const Main02 = () => {
     const navigate = useNavigate();
 
     const [priorityGoal, setPriorityGoal] = useState({ date: '', goalText: '', sortedTexts: [] });
     const [recentCircumstances, setRecentCircumstances] = useState([]);
 
-
-const Main02 = () => {
-    
-
-
-
     const [userProfile, setProfile] = useState({
         id: '',
         username: '',
         motto: '',
-      });
+    });
 
-      useEffect(() => {
+    const actiondateClick = (id) => {
+        navigate(`/action6/${id}`);
+    };
+
+    useEffect(() => {
         const fetchUserProfile = async () => {
-          try {
-            const accessToken = localStorage.getItem('accessToken');
-    
-            const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
-              headers: {
-                Authorization: `Bearer ${accessToken}`
-              }
-            });
-            
-            const storedGoal = localStorage.getItem('priorityGoal');
-        if (storedGoal) {
-            setPriorityGoal(JSON.parse(storedGoal));
-        }
-    }, [])
-    
-            const userProfile = profileResponse.data;
-    
-            setProfile({
-              id: userProfile.id,
-              username: userProfile.username,
-              motto: userProfile.motto,
-            });
-          } catch (error) {
-            setError(error.message);
-            console.error('Error fetching user profile:', error);
-          }
+            try {
+                const accessToken = localStorage.getItem('accessToken');
+                const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                });
+
+                const storedGoal = localStorage.getItem('priorityGoal');
+                if (storedGoal) {
+                    setPriorityGoal(JSON.parse(storedGoal));
+                }
+
+                const userProfile = profileResponse.data;
+
+                setProfile({
+                    id: userProfile.id,
+                    username: userProfile.username,
+                    motto: userProfile.motto,
+                });
+
+                const data = await gettotalCircumstances();
+                const sortedCircumstances = data.circumstances.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+                setRecentCircumstances(sortedCircumstances.slice(0, 4));
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            }
         };
-    
+
         fetchUserProfile();
-      }, []);
+    }, []);
 
     const circumstanceButtonClick = () => {
         navigate('/circumstancePage');
     };
 
     const goalButtonClick = () => {
-        navigate('/goalMain');
+        navigate('/goalMain', { state: { priorityGoal } });
     };
 
-
-      const newGoalButtonClick = () => {
+    const newGoalButtonClick = () => {
         navigate('/goal01');
     };
 
@@ -78,59 +75,22 @@ const Main02 = () => {
         navigate('/mypage');
     };
 
-
-
-      
-
     const newCircumstancegoalButtonClick = () => {
         navigate('/action1');
-
-      }
-    
-
-  return (
-    <div className='main02_wrap'>
-        <div className='welcome'>
-            <p className='p'>Welcome To Metalog</p>
-            <div className='underline01'/>
-            <p className='p'>{userProfile.username} Dashboard</p>
-            <div className='underline02'/>
-        </div>
-
-
-    const actiondateClick = (id) => {
-        navigate(`/action6/${id}`);
-      };
-
-    useEffect(() => {
-        const fetchRecentCircumstances = async () => {
-            try {
-                const data = await gettotalCircumstances();
-                const sortedCircumstances = data.circumstances.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
-                setRecentCircumstances(sortedCircumstances.slice(0, 4));
-            } catch (error) {
-                console.error('Failed to fetch circumstances:', error);
-            }
-        };
-
-        fetchRecentCircumstances();
-    }, []);
+    };
 
     return (
         <div className='main02_wrap'>
             <div className='welcome'>
                 <p className='p'>Welcome To Metalog</p>
                 <div className='underline01' />
-                <p className='p'>soobini1121 Dashboard</p>
+                <p className='p'>{userProfile.username} Dashboard</p>
                 <div className='underline02' />
             </div>
-
-
             <div className='container01'>
                 <div className='proprity'>
                     <h3 className='text'>PRIORITY GOAL</h3>
                     <div className='goal'>
-
                         <p className='date_left'>{priorityGoal.date}</p>
                         <p className='date'>|</p>
                         <p className='goal_right'>{priorityGoal.goalText}</p>
@@ -148,10 +108,8 @@ const Main02 = () => {
                 <div className='go_to_goal'>
                     <button className='goalbtn' onClick={goalButtonClick}>목표를 위한 실천 방법 보러가기</button>
                     <div className='write' onClick={newGoalButtonClick}>
-
-                        <img src={pen} className='pen'/>
-
-                        <div className='new' >신규 목표 작성하기</div>
+                        <img src={pen} className='pen' />
+                        <div className='new'>신규 목표 작성하기</div>
                     </div>
                 </div>
             </div>
@@ -161,7 +119,6 @@ const Main02 = () => {
                     <h1 className='h1'>PREVIOUS CIRCUMSTANCE</h1>
                     <div className='content04' onClick={circumstanceButtonClick}>
                         <h3 className='more'>더보기</h3>
-
                         <img src={detail} className='detail' />
                     </div>
                 </div>
@@ -176,7 +133,6 @@ const Main02 = () => {
                             }).replace(/\./g, ' . ')}</h3>
                         </div>
                     ))}
-
                 </div>
 
                 <div className='circumstance_box' onClick={newCircumstancegoalButtonClick}>
@@ -184,9 +140,7 @@ const Main02 = () => {
                         <h1 className='h1'>CIRCUMSTANCE</h1>
                         <p className='p'>상황에 대한 인지 능력을 키워보세요!</p>
                     </div>
-
-                    <img src={line} className='line'/>
-
+                    <img src={line} className='line' />
                 </div>
 
                 <div className='circumstance_box' onClick={newGoalButtonClick}>
@@ -194,8 +148,7 @@ const Main02 = () => {
                         <h1 className='h1'>GOAL</h1>
                         <p className='p'>목표를 설정하고 도달하기 위해 노력하며 메타인지를 향상시켜보세요!</p>
                     </div>
-
-                    <img src={line} className='line'/>
+                    <img src={line} className='line' />
                 </div>
             </div>
         </div>

@@ -86,7 +86,8 @@ const Mypage01 = () => {
 
   return (
     <div className='profile'>
-      <img src={userProfile.profilePicture} alt="프로필" className='img' />
+      <img src={userProfile.profilePicture} className='img'/>
+      <img src={def} className='img_default'/ >
       <h1 className='id'>{userProfile.username || '아이디를 설정해 주세요.'}</h1>
       <hr className='line' />
       
