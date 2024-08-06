@@ -33,13 +33,21 @@
     width: 540px;
     height: 316px;
     background: white;
-    padding: 20px;
     border-radius: 20px;
     text-align: center;
-    img{
+    .X_div{
+      display: flex;
+      justify-content: flex-end;
+    }
+    .popup_icon{
         width: 48px;
         height: 48px;
-        margin-top: 20px;
+    }
+    .popup_X{
+      width: 24px;
+      height: 24px;
+      margin-top: 16px;
+      margin-right: 18px;
     }
     p{
         font-family: 'R';
