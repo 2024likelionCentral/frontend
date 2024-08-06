@@ -52,7 +52,7 @@ const Signin02 = () => {
         role: 'ROLE_USER'
       };
       const response = await signup(userData);
-      alert('Signup successful!');
+      alert('회원가입이 완료되었습니다!');
       navigate('/enter');
     } catch (error) {
       setError('이미 있는 아이디입니다.');

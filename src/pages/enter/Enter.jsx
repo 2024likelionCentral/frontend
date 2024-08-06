@@ -49,7 +49,6 @@ const Enter = () => {
   const loginButtonClick = async () => {
     try {
       const response = await login(form);
-      alert('Login successful!');
       localStorage.setItem('accessToken', response.accessToken);
       localStorage.setItem('refreshToken', response.refreshToken);
       localStorage.setItem('userId', response.userId); // Storing userId
@@ -76,10 +75,6 @@ const Enter = () => {
 
   const signupButtonClick = () => {
     navigate('/signin');
-  };
-
-  const googleButtonClick = () => {
-    console.log('구글 로그인 버튼 클릭됨!');
   };
 
   return (
@@ -125,13 +120,8 @@ const Enter = () => {
 
           <div className='line'>
             <hr className='hr' />
-            <p className='or'>또는</p>
             <hr className='hr' />
           </div>
-
-          <button className='googlebtn' onClick={googleButtonClick}>
-            <img src={googlelogo} alt="google" className='googlelogo' /> 구글 계정으로 로그인
-          </button> {/* 구글 로그인 버튼 */}
 
           <div className='option'>
             <h3 className='signup' onClick={signupButtonClick}>회원가입</h3>

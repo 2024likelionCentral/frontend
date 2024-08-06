@@ -29,11 +29,11 @@ const Goal04 = () => {
         createdTime: new Date().toISOString(), // 작성 시간 추가
       };
       const savedGoal = await addGoal(goalData);
-      alert('작성 성공!');
+      alert('목표 작성이 완료되었습니다!');
       navigate('/goalMain', { state: { goalText: savedGoal.goal, sortedTexts: savedGoal.actions, createdTime: savedGoal.createdTime } });
     } catch (error) {
       console.error('작성 실패:', error);
-      alert('실패');
+      alert('목표 작성을 실패하였습니다.');
     }
   };
 

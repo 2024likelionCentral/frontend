@@ -51,11 +51,11 @@ const Action_5 = () => {
 
         try {
             await saveActionData(data);
-            alert('Data saved successfully');
+            alert('상황 작성이 완료되었습니다!');
             navigate('/circumstancePage');
         } catch (error) {
             console.error(error); // 에러 로그 출력
-            alert('Failed to save data');
+            alert('상황 작성을 실패하였습니다.');
         }
     };
 
