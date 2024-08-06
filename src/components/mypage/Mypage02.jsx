@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../../assets/scss/mypage/Calendar.css';
@@ -11,6 +12,15 @@ const Mypage02 = () => {
     const [goalsCount, setGoalsCount] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const goToCircumstances = () => {
+        navigate('/Action_6');
+    };
+
+    const goToGoal = () => {
+        navigate('/GoalMain');
+    };
 
     const handleDateChange = (newDate) => {
         setDate(newDate);
@@ -101,14 +111,14 @@ const Mypage02 = () => {
                                 <h4 className='h4'>목표 설정</h4>
                                 <h4 className='h4'>|</h4>
                                 <h4 className='h4'>{goalsCount}개</h4>
-                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표' /></a>
+                                <a className='a' onClick={goToGoal}>보러가기 <img src={arrow} className='arrow' alt='화살표'/></a>
                             </div>
 
                             <div className='content02'>
                                 <h4 className='h4'>상황 인지</h4>
                                 <h4 className='h4'>|</h4>
                                 <h4 className='h4'>{circumstancesCount}개</h4>
-                                <a href='#' className='a'>보러가기 <img src={arrow} className='arrow' alt='화살표' /></a>
+                                <a className='a' onClick={goToCircumstances}>보러가기 <img src={arrow} className='arrow' alt='화살표'/></a>
                             </div>
                         </div>
                     </div>
