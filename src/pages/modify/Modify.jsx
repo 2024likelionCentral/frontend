@@ -38,7 +38,7 @@ const Modify = () => {
   const refreshToken = async () => {
     try {
       console.log('Refreshing token...');
-      const response = await axios.post('http://15.165.73.36:1234/auth/refresh', {
+      const response = await axios.post('http://15.165.73.36:1234/api/auth/refresh', {
         refreshToken: localStorage.getItem('refreshToken'),
       });
       console.log('New tokens received:', response.data);
@@ -73,7 +73,7 @@ const Modify = () => {
     const fetchUserProfile = async () => {
       try {
         const accessToken = localStorage.getItem('accessToken');
-        const profileResponse = await apiClient.get('/user-profile', {
+        const profileResponse = await apiClient.get('/api/user-profile', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -97,7 +97,7 @@ const Modify = () => {
   const updateProfile = async (profileData) => {
     try {
       console.log('Sending profile data:', JSON.stringify(profileData, null, 2));
-      const response = await apiClient.put('/user-profile/update-profile', profileData);
+      const response = await apiClient.put('/api/user-profile/update-profile', profileData);
       console.log('Response data:', response.data);
       return response.data;
     } catch (error) {
@@ -115,7 +115,7 @@ const Modify = () => {
     formData.append('profilePicture', file);
 
     try {
-      const response = await apiClient.put('/user-profile/update-picture', formData, {
+      const response = await apiClient.put('/api/user-profile/update-picture', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

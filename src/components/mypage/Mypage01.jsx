@@ -23,7 +23,7 @@ const Mypage01 = () => {
   const fetchUserProfile = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
-      const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
+      const profileResponse = await axios.get('http://15.165.73.36:1234/api/user-profile', {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -45,7 +45,7 @@ const Mypage01 = () => {
   const fetchCounts = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
-      const countsResponse = await axios.get('http://15.165.73.36:1234/counts', {
+      const countsResponse = await axios.get('http://15.165.73.36:1234/api/counts', {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

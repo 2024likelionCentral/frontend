@@ -19,7 +19,7 @@ const Mypage02 = () => {
     const fetchCountsByDate = async (formattedDate) => {
         try {
             const accessToken = localStorage.getItem('accessToken');
-            const response = await axios.get(`http://15.165.73.36:1234/counts/byDate?date=${formattedDate}`, {
+            const response = await axios.get(`http://15.165.73.36:1234/api/counts/byDate?date=${formattedDate}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }

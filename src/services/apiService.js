@@ -3,7 +3,7 @@ import apiClient from '../api/apiClient 2';
 // 회원가입 함수
 export const signup = async (userData) => {
   try {
-    const response = await apiClient.post('/auth/signup', userData);
+    const response = await apiClient.post('/api/auth/signup', userData);
     return response.data;
   } catch (error) {
     console.error('Signup failed:', error);
@@ -13,7 +13,7 @@ export const signup = async (userData) => {
 
 export const login = async (credentials) => {
   try {
-    const response = await apiClient.post('/auth/login', credentials);
+    const response = await apiClient.post('/api/auth/login', credentials);
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
     localStorage.setItem('userId', response.data.userId); // userId 저장
@@ -28,7 +28,7 @@ export const login = async (credentials) => {
   
   export const fetchUserProfile = async () => {
     try {
-      const response = await apiClient.get(`/user-profile`);
+      const response = await apiClient.get(`/api/user-profile`);
       console.log('Profile Response:', response.data); // 응답 데이터 로그
       return response.data;
     } catch (error) {
@@ -43,7 +43,7 @@ export const login = async (credentials) => {
 
 export const fetchUserProfilePicture = async () => {
   try {
-    const response = await apiClient.get(`/user-profile/profile-picture`);
+    const response = await apiClient.get(`/api/user-profile/profile-picture`);
     console.log('Profile Picture Response:', response.data); // 응답 데이터 로그
     return response.data;
   } catch (error) {
@@ -57,7 +57,7 @@ export const fetchUserProfilePicture = async () => {
 // 목표 추가 함수
 export const addGoal = async (goalData) => {
   try {
-    const response = await apiClient.post('/goals', goalData);
+    const response = await apiClient.post('/api/goals', goalData);
     return response.data;
   } catch (error) {
     console.error('Failed to add goal:', error);
@@ -68,7 +68,7 @@ export const addGoal = async (goalData) => {
 //액세스 토큰 발급
 export const fetchUserData = async () => {
   try {
-    const response = await apiClient.get('/auth/refresh');
+    const response = await apiClient.get('/api/auth/refresh');
     return response.data;
   } catch (error) {
     console.error('Failed to fetch user data:', error);
@@ -81,7 +81,7 @@ export const fetchUserData = async () => {
 // 목표 조회 함수
 export const getGoalById = async (goalId) => {
   try {
-    const response = await apiClient.get(`/goals/${goalId}`);
+    const response = await apiClient.get(`/api/goals/${goalId}`);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch goal:', error);
@@ -91,7 +91,7 @@ export const getGoalById = async (goalId) => {
 
 export const saveActionData = async (data) => {
   try {
-    const response = await apiClient.post('/circumstances', data);
+    const response = await apiClient.post('/api/circumstances', data);
     return response.data;
   } catch (error) {
     console.error('Failed to save action data:', error);
@@ -104,7 +104,7 @@ export const saveActionData = async (data) => {
 // 목표 목록을 가져오는 함수
 export const getGoals = async () => {
   try {
-    const response = await apiClient.get('/goals');
+    const response = await apiClient.get('/api/goals');
     return response.data.goals; // 응답 데이터에서 goals 배열만 반환
   } catch (error) {
     console.error('Failed to fetch goals:', error);
@@ -117,7 +117,7 @@ export const getGoals = async () => {
 // 목표의 우선순위를 설정하는 함수
 export const setGoalPriority = async (goalId) => {
   try {
-    const response = await apiClient.patch(`/goals/${goalId}/priority`);
+    const response = await apiClient.patch(`/api/goals/${goalId}/priority`);
     return response.data;
   } catch (error) {
     console.error('Failed to set goal priority:', error.response ? error.response.data : error.message);
@@ -128,7 +128,7 @@ export const setGoalPriority = async (goalId) => {
 
 export const getCircumstance = async (id) => {
   try {
-    const response = await apiClient.get(`/circumstances/${id}`);
+    const response = await apiClient.get(`/api/circumstances/${id}`);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch circumstance data:', error);
@@ -140,7 +140,7 @@ export const getCircumstance = async (id) => {
 
 export const deleteGoal = async (goalId) => {
   try {
-    const response = await apiClient.delete(`/goals/${goalId}`);
+    const response = await apiClient.delete(`/api/goals/${goalId}`);
     return response.data;
   } catch (error) {
     console.error('Failed to delete goal:', error.response ? error.response.data : error.message);
@@ -150,7 +150,7 @@ export const deleteGoal = async (goalId) => {
 
 export const deleteCircumstance = async (id) => {
   try {
-    const response = await apiClient.delete(`/circumstances/${id}`);
+    const response = await apiClient.delete(`/api/circumstances/${id}`);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch circumstance data:', error);
@@ -162,7 +162,7 @@ export const deleteCircumstance = async (id) => {
 
 export const getPriorityGoal = async () => {
   try {
-    const response = await apiClient.get('/goals/priority');
+    const response = await apiClient.get('/api/goals/priority');
     return response.data;
   } catch (error) {
     console.error('Failed to fetch priority goal:', error);
@@ -172,7 +172,16 @@ export const getPriorityGoal = async () => {
 
 export const gettotalCircumstances = async () => {
   try {
-    const response = await apiClient.get('/circumstances');
+    const response = await apiClient.get('/api/circumstances');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch circumstances:', error);
+    throw error;
+  }
+};
+export const getusername = async () => {
+  try {
+    const response = await apiClient.get('/api/user-profile');
     return response.data;
   } catch (error) {
     console.error('Failed to fetch circumstances:', error);
