@@ -115,12 +115,8 @@ const Signin02 = () => {
       </div>
       <div className='line'>
         <hr className='hr' />
-        <p className='or'>또는</p>
         <hr className='hr' />
       </div>
-      <button className='googlebtn' onClick={googleButtonClick}>
-        <img src={googlelogo} alt="google" className='googlelogo' /> 구글 계정으로 회원가입
-      </button>
       <div className='change_area'>
         <p className='optional'>이미 Metalog 회원이신가요?</p>
 
