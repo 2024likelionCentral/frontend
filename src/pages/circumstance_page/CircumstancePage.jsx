@@ -11,7 +11,19 @@ import book02 from '../../assets/img/circumstance_page/book02.svg';
 import book03 from '../../assets/img/circumstance_page/book03.svg';
 import pen from '../../assets/img/circumstance_page/pen.svg';
 import Header from '../../components/main/Header';
+
+import axios from 'axios';
 import { gettotalCircumstances } from '../../services/apiService';
+
+// axios 인스턴스 설정
+const apiClient = axios.create({
+  baseURL: 'http://15.165.73.36:1234',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+
 
 const getCurrentFormattedDate = () => {
   const date = new Date();
@@ -32,10 +44,40 @@ const chunkArray = (array, chunkSize) => {
 
 
 const CircumstancePage = () => {
+  const [data, setData] = useState([]);
+  const [swiperSlides, setSwiperSlides] = useState([]);
   const navigate = useNavigate(); // useNavigate 훅 사용
   const [currentDate, setCurrentDate] = useState('');
   const [entries, setEntries] = useState([]);
   const [isTodayEntryExists, setIsTodayEntryExists] = useState(false);
+
+  useEffect(() => {
+    // 데이터 요청
+    apiClient.get('/circumstance')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the data:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    // SwiperSlide 생성
+    if (data.length > 4) {
+      const chunks = [];
+      for (let i = 0; i < data.length; i += 4) {
+        chunks.push(data.slice(i, i + 4));
+      }
+      setSwiperSlides(chunks);
+    } else {
+      setSwiperSlides([data]);
+    }
+  }, [data]);
+
+  // 오늘 날짜 가져오기
+  const today = new Date();
+  const formattedToday = `${today.getFullYear()}. ${String(today.getMonth() + 1).padStart(2, '0')}. ${String(today.getDate()).padStart(2, '0')}`;
 
   const handleNewButtonClick = () => {
     navigate('/action1'); // NEW 버튼 클릭 시 /action 경로로 이동
@@ -92,6 +134,7 @@ const CircumstancePage = () => {
           modules={[Navigation, Pagination]}
           className='swiper-container'
         >
+
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className='swiper-slide'>
               <div className='bookshelf'>

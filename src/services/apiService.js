@@ -11,11 +11,9 @@ export const signup = async (userData) => {
   }
 };
 
-// 로그인 함수
 export const login = async (credentials) => {
   try {
     const response = await apiClient.post('/auth/login', credentials);
-
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
     localStorage.setItem('userId', response.data.userId); // userId 저장
@@ -26,6 +24,34 @@ export const login = async (credentials) => {
     throw error;
   }
 };
+
+  
+  export const fetchUserProfile = async () => {
+    try {
+      const response = await apiClient.get(`/user-profile`);
+      console.log('Profile Response:', response.data); // 응답 데이터 로그
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      if (error.response) {
+        console.error('Response error data:', error.response.data); // 응답 오류 데이터 로그
+        console.error('Response status:', error.response.status); // 응답 상태 코드 로그
+      }
+      throw error;
+    }
+  };
+
+export const fetchUserProfilePicture = async () => {
+  try {
+    const response = await apiClient.get(`/user-profile/profile-picture`);
+    console.log('Profile Picture Response:', response.data); // 응답 데이터 로그
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user profile picture:', error);
+    throw error;
+  }
+};
+
 
 
 // 목표 추가 함수

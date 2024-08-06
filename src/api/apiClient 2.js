@@ -5,22 +5,20 @@ let ACCESS_TOKEN = localStorage.getItem('accessToken');
 
 
 // 환경 변수로부터 기본 URL을 가져옵니다.
+
 const apiClient = axios.create({
   baseURL: 'http://15.165.73.36:1234',
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
   },
 });
-
-// 요청 인터셉터
 
 apiClient.interceptors.request.use(
   config => {
     const token = localStorage.getItem('accessToken');
     if (token) {
-
       config.headers['Authorization'] = `Bearer ${token}`;
-
     }
     return config;
   },

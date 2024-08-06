@@ -6,8 +6,8 @@
     height: 410px !important;
     background-color: transparent; 
     border-radius: 10px; 
-    margin-bottom: 90px;
-    margin-top: -10px;
+    margin-bottom: 105px;
+    margin-top: -15px;
 }
 
 
@@ -55,7 +55,7 @@
 
 /* 사용자 정의 타일 스타일 */
 .custom-tile {
-    height: 50px;
+    height: 53px;
     max-width: 55px;
     display: flex;
     justify-content: center;

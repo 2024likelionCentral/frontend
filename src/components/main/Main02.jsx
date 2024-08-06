@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Togle01 from '../../assets/img/main/1.svg';
 import Togle02 from '../../assets/img/main/2.svg';
@@ -8,6 +7,8 @@ import line from '../../assets/img/main/line.svg';
 import detail from '../../assets/img/main/more.svg';
 import { useNavigate } from 'react-router-dom';
 import { gettotalCircumstances } from '../../services/apiService';
+import axios from 'axios';
+
 
 const Main02 = () => {
     const navigate = useNavigate();
@@ -15,13 +16,50 @@ const Main02 = () => {
     const [priorityGoal, setPriorityGoal] = useState({ date: '', goalText: '', sortedTexts: [] });
     const [recentCircumstances, setRecentCircumstances] = useState([]);
 
-    useEffect(() => {
-        const storedGoal = localStorage.getItem('priorityGoal');
+
+const Main02 = () => {
+    
+
+
+
+    const [userProfile, setProfile] = useState({
+        id: '',
+        username: '',
+        motto: '',
+      });
+
+      useEffect(() => {
+        const fetchUserProfile = async () => {
+          try {
+            const accessToken = localStorage.getItem('accessToken');
+    
+            const profileResponse = await axios.get('http://15.165.73.36:1234/user-profile', {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              }
+            });
+            
+            const storedGoal = localStorage.getItem('priorityGoal');
         if (storedGoal) {
             setPriorityGoal(JSON.parse(storedGoal));
         }
-    }, []);
-
+    }, [])
+    
+            const userProfile = profileResponse.data;
+    
+            setProfile({
+              id: userProfile.id,
+              username: userProfile.username,
+              motto: userProfile.motto,
+            });
+          } catch (error) {
+            setError(error.message);
+            console.error('Error fetching user profile:', error);
+          }
+        };
+    
+        fetchUserProfile();
+      }, []);
 
     const circumstanceButtonClick = () => {
         navigate('/circumstancePage');
@@ -31,18 +69,34 @@ const Main02 = () => {
         navigate('/goalMain');
     };
 
+
+      const newGoalButtonClick = () => {
+        navigate('/goal01');
+    };
+
     const mypageButtonClick = () => {
         navigate('/mypage');
     };
 
 
-    const newGoalButtonClick = () => {
-        navigate('/goal01');
-    };
+
+      
 
     const newCircumstancegoalButtonClick = () => {
         navigate('/action1');
-    }
+
+      }
+    
+
+  return (
+    <div className='main02_wrap'>
+        <div className='welcome'>
+            <p className='p'>Welcome To Metalog</p>
+            <div className='underline01'/>
+            <p className='p'>{userProfile.username} Dashboard</p>
+            <div className='underline02'/>
+        </div>
+
 
     const actiondateClick = (id) => {
         navigate(`/action6/${id}`);
