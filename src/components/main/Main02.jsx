@@ -6,13 +6,22 @@ import pen from '../../assets/img/main/new.svg';
 import line from '../../assets/img/main/line.svg';
 import detail from '../../assets/img/main/more.svg';
 import { useNavigate } from 'react-router-dom';
-import { gettotalCircumstances } from '../../services/apiService';
+import { gettotalCircumstances,getGoals } from '../../services/apiService';
 import axios from 'axios';
+// 유틸리티 함수
+const getFormattedDate = (date) => {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year} . ${month} . ${day}`;
+  };
 
 const Main02 = () => {
     const navigate = useNavigate();
+    const [priorityGoal, setPriorityGoal] = useState({ goalText: '', sortedTexts: [], createdTime: '' });
 
-    const [priorityGoal, setPriorityGoal] = useState({ date: '', goalText: '', sortedTexts: [] });
+    const [goals, setGoals] = useState([]);
     const [recentCircumstances, setRecentCircumstances] = useState([]);
 
     const [userProfile, setProfile] = useState({
@@ -35,9 +44,16 @@ const Main02 = () => {
                     }
                 });
 
-                const storedGoal = localStorage.getItem('priorityGoal');
-                if (storedGoal) {
-                    setPriorityGoal(JSON.parse(storedGoal));
+                const response = await getGoals();
+                const fetchedGoals = response.goals || response;
+
+                const priorityGoal = fetchedGoals.find(goal => goal.priority);
+                if (priorityGoal) {
+                    setPriorityGoal({
+                        goalText: priorityGoal.goal,
+                        sortedTexts: priorityGoal.actions,
+                        createdTime: priorityGoal.createdTime,
+                    });
                 }
 
                 const userProfile = profileResponse.data;
@@ -91,7 +107,7 @@ const Main02 = () => {
                 <div className='proprity'>
                     <h3 className='text'>PRIORITY GOAL</h3>
                     <div className='goal'>
-                        <p className='date_left'>{priorityGoal.date}</p>
+                        <p className='date_left'>{getFormattedDate(new Date())}</p>
                         <p className='date'>|</p>
                         <p className='goal_right'>{priorityGoal.goalText}</p>
                     </div>

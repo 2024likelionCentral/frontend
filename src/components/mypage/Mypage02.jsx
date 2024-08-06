@@ -15,7 +15,7 @@ const Mypage02 = () => {
     const navigate = useNavigate();
 
     const goToCircumstances = () => {
-        navigate('/Action_6');
+        navigate('/circumstancePage');
     };
 
     const goToGoal = () => {
